@@ -14,36 +14,6 @@ import {
 } from 'lucide-react';
 
 const AboutPage = () => {
-  const team = [
-    {
-      name: 'John Anderson',
-      role: 'Founder & CEO',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: '15+ years in real estate with a passion for helping families find their perfect home.',
-      specialties: ['Luxury Properties', 'Investment Consulting', 'Market Analysis'],
-    },
-    {
-      name: 'Sarah Mitchell',
-      role: 'Senior Real Estate Agent',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Specializing in residential properties with a focus on first-time homebuyers.',
-      specialties: ['First-Time Buyers', 'Residential Sales', 'Negotiation'],
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Commercial Real Estate Specialist',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Expert in commercial properties and investment opportunities.',
-      specialties: ['Commercial Properties', 'Investment Analysis', 'Portfolio Management'],
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Property Manager',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Dedicated to providing exceptional property management services.',
-      specialties: ['Property Management', 'Tenant Relations', 'Maintenance Coordination'],
-    },
-  ];
 
   const values = [
     {
@@ -69,9 +39,9 @@ const AboutPage = () => {
   ];
 
   const achievements = [
-    { number: '500+', label: 'Properties Sold', icon: Award },
-    { number: '1000+', label: 'Happy Clients', icon: Users },
-    { number: '15+', label: 'Years Experience', icon: Star },
+    { number: '300+', label: 'Properties Sold', icon: Award },
+    { number: '500+', label: 'Happy Clients', icon: Users },
+    { number: '5+', label: 'Years in Dubai', icon: Star },
     { number: '98%', label: 'Client Satisfaction', icon: CheckCircle },
   ];
 
@@ -90,8 +60,8 @@ const AboutPage = () => {
               About JAY Real Estate
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              For over 15 years, we've been helping families and investors find their perfect properties. 
-              Our commitment to excellence and personalized service has made us a trusted name in real estate.
+              For over 5 years, we've been helping families and investors find their perfect properties in Dubai.
+              Our commitment to excellence and deep local knowledge has made us a trusted name in Dubai real estate.
             </p>
           </motion.div>
         </div>
@@ -112,19 +82,19 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  JAY Real Estate was founded in 2008 with a simple mission: to make the real estate 
-                  process as smooth and stress-free as possible for our clients. What started as a 
-                  small family business has grown into one of the most trusted real estate agencies 
-                  in the region.
+                  JAY Real Estate was founded in 2019 with a simple mission: to make the Dubai real estate
+                  process as smooth and stress-free as possible for our clients. What started as a
+                  specialized Dubai property consultancy has grown into one of the most trusted real estate
+                  agencies in the Emirates.
                 </p>
                 <p>
-                  Our founder, John Anderson, recognized that buying or selling a home is one of 
-                  life's most significant decisions. He built JAY Real Estate on the principles of 
-                  integrity, expertise, and genuine care for our clients' needs.
+                  Our founder, John Anderson, recognized that buying or selling property in Dubai requires
+                  deep local knowledge and cultural understanding. He built JAY Real Estate on the principles of
+                  integrity, Dubai market expertise, and genuine care for our clients' unique needs.
                 </p>
                 <p>
-                  Today, we continue to uphold these values while embracing modern technology and 
-                  innovative marketing strategies to serve our clients better than ever before.
+                  Today, we continue to uphold these values while leveraging cutting-edge technology and
+                  Dubai-specific marketing strategies to serve our clients in this dynamic market.
                 </p>
               </div>
             </motion.div>
@@ -235,66 +205,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Meet Our Team
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experienced professionals dedicated to your success
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 font-semibold mb-3">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                  {member.bio}
-                </p>
-                <div className="space-y-1">
-                  {member.specialties.map((specialty, idx) => (
-                    <span
-                      key={idx}
-                      className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mr-1"
-                    >
-                      {specialty}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Mission Section */}
       <section className="py-16 md:py-24 bg-gray-50">

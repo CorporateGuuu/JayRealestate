@@ -12,31 +12,24 @@ const Stats = () => {
   const stats = [
     {
       icon: Home,
-      number: 500,
+      number: 300,
       suffix: '+',
       label: 'Properties Sold',
-      description: 'Successfully closed deals',
+      description: 'Successfully closed deals in Dubai',
     },
     {
       icon: Users,
-      number: 1000,
+      number: 500,
       suffix: '+',
       label: 'Happy Clients',
-      description: 'Satisfied customers',
+      description: 'Satisfied Dubai residents',
     },
     {
       icon: TrendingUp,
-      number: 15,
+      number: 5,
       suffix: '+',
-      label: 'Years Experience',
-      description: 'In real estate market',
-    },
-    {
-      icon: Award,
-      number: 50,
-      suffix: '+',
-      label: 'Expert Agents',
-      description: 'Professional team members',
+      label: 'Years in Dubai',
+      description: 'Local market expertise',
     },
   ];
 
@@ -81,11 +74,11 @@ const Stats = () => {
             Our Success in Numbers
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Years of dedication and expertise have built our reputation as a trusted real estate partner
+            5+ years of Dubai market expertise have built our reputation as the trusted real estate partner
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -131,8 +124,8 @@ const Stats = () => {
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Market Expertise</h4>
-                  <p className="text-gray-600 text-sm">Deep knowledge of local market trends and pricing</p>
+                  <h4 className="font-semibold text-gray-900 mb-1">Dubai Market Expertise</h4>
+                  <p className="text-gray-600 text-sm">Deep knowledge of Dubai's market trends and neighborhood pricing</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">

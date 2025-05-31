@@ -12,47 +12,47 @@ const Testimonials = () => {
     {
       id: 1,
       name: 'Sarah Johnson',
-      role: 'First-time Homebuyer',
+      role: 'Expatriate Family',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
-      text: 'JAY Real Estate made my dream of homeownership a reality. Their team was incredibly patient, knowledgeable, and helped me navigate the entire process with confidence. I couldn\'t be happier with my new home!',
-      property: 'Modern Condo in Downtown',
+      text: 'JAY Real Estate made our move to Dubai seamless. Their team understood our needs as expatriates and helped us find the perfect home in Dubai Marina. Their knowledge of RERA regulations was invaluable!',
+      property: 'Luxury Apartment in Dubai Marina',
     },
     {
       id: 2,
       name: 'Michael Chen',
-      role: 'Property Investor',
+      role: 'UAE Property Investor',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
-      text: 'As an investor, I need accurate market analysis and quick turnarounds. JAY Real Estate consistently delivers both. They\'ve helped me build a profitable portfolio over the past three years.',
-      property: 'Investment Portfolio - 5 Properties',
+      text: 'As an investor in Dubai real estate, I need accurate market analysis and quick turnarounds. JAY Real Estate consistently delivers both. They\'ve helped me build a profitable UAE portfolio over 3 years.',
+      property: 'Dubai Investment Portfolio - 5 Properties',
     },
     {
       id: 3,
       name: 'Emily Rodriguez',
-      role: 'Family Relocating',
+      role: 'Relocating to Dubai',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
-      text: 'Moving across the country with two kids was stressful, but JAY Real Estate made the home buying process seamless. They understood our family\'s needs and found us the perfect neighborhood.',
-      property: 'Family Home with Great Schools',
+      text: 'Moving to Dubai with two kids was stressful, but JAY Real Estate made the process seamless. They understood our family\'s needs and found us the perfect villa in Emirates Hills near excellent schools.',
+      property: 'Family Villa in Emirates Hills',
     },
     {
       id: 4,
       name: 'David Thompson',
-      role: 'Luxury Home Seller',
+      role: 'Palm Jumeirah Seller',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
-      text: 'Selling our luxury home required a special touch. JAY Real Estate\'s marketing strategy was exceptional, and they sold our property above asking price within 30 days. Truly professional service.',
-      property: 'Luxury Estate - $2.8M Sale',
+      text: 'Selling our Palm Jumeirah villa required Dubai market expertise. JAY Real Estate\'s marketing strategy was exceptional, and they sold our property above asking price within 30 days. Outstanding service.',
+      property: 'Palm Jumeirah Villa - AED 12M Sale',
     },
     {
       id: 5,
       name: 'Lisa Park',
-      role: 'Commercial Buyer',
+      role: 'DIFC Office Buyer',
       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
-      text: 'Their commercial real estate expertise is unmatched. They helped us find the perfect location for our business and negotiated terms that exceeded our expectations. Highly recommended!',
-      property: 'Commercial Office Space',
+      text: 'Their Dubai commercial real estate expertise is unmatched. They helped us find the perfect DIFC office location and negotiated terms that exceeded our expectations. Highly recommended for UAE business!',
+      property: 'DIFC Commercial Office Space',
     },
   ];
 
@@ -99,7 +99,7 @@ const Testimonials = () => {
             What Our Clients Say
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it - hear from our satisfied clients about their experience
+            Don't just take our word for it - hear from our satisfied Dubai clients about their experience
           </p>
         </motion.div>
 

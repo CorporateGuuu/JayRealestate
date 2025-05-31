@@ -45,27 +45,27 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: 'Visit Our Office',
-      details: ['123 Real Estate Ave', 'Suite 100', 'City, State 12345'],
+      details: ['Sultan Business Centre, Oud Metha', 'Office Number: 137-A-75', 'Dubai, UAE'],
       action: 'Get Directions',
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['(555) 123-4567', 'Mon-Fri: 9AM-6PM', 'Sat-Sun: 10AM-4PM'],
+      details: ['+971 55 208 9241', 'Sun-Thu: 9AM-6PM GST', 'Sat: 10AM-4PM GST'],
       action: 'Call Now',
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@jayrealestate.com', 'support@jayrealestate.com', 'We reply within 24 hours'],
+      details: ['info@jayrealestate.ae', 'dubai@jayrealestate.ae', 'We reply within 24 hours'],
       action: 'Send Email',
     },
   ];
 
   const officeHours = [
-    { day: 'Monday - Friday', hours: '9:00 AM - 6:00 PM' },
-    { day: 'Saturday', hours: '10:00 AM - 4:00 PM' },
-    { day: 'Sunday', hours: '10:00 AM - 4:00 PM' },
+    { day: 'Sunday - Thursday', hours: '9:00 AM - 6:00 PM GST' },
+    { day: 'Saturday', hours: '10:00 AM - 4:00 PM GST' },
+    { day: 'Friday', hours: 'Closed' },
   ];
 
   return (
@@ -83,7 +83,7 @@ const ContactPage = () => {
               Contact Us
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Ready to start your real estate journey? Get in touch with our expert team today.
+              Ready to start your Dubai real estate journey? Get in touch with our local expert team today.
             </p>
           </motion.div>
         </div>
@@ -317,8 +317,8 @@ const ContactPage = () => {
                 </div>
                 <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                   <p className="text-blue-800 text-sm">
-                    <strong>Emergency Contact:</strong> For urgent matters outside office hours, 
-                    call our emergency line at (555) 123-4567.
+                    <strong>Emergency Contact:</strong> For urgent matters outside office hours,
+                    call our emergency line at +971 55 208 9241.
                   </p>
                 </div>
               </div>
@@ -349,7 +349,7 @@ const ContactPage = () => {
                   <div className="text-center text-gray-500">
                     <MapPin className="w-12 h-12 mx-auto mb-2" />
                     <p>Interactive Map</p>
-                    <p className="text-sm">123 Real Estate Ave, Suite 100</p>
+                    <p className="text-sm">Sultan Business Centre, Oud Metha, Office: 137-A-75, Dubai</p>
                   </div>
                 </div>
               </div>

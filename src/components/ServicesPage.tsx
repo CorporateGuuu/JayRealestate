@@ -2,18 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { 
-  Home, 
-  TrendingUp, 
-  Key, 
-  Calculator, 
-  Shield, 
+import {
+  Home,
+  TrendingUp,
+  Key,
+  Calculator,
+  Shield,
   Users,
   ArrowRight,
   CheckCircle,
   Star,
   DollarSign,
-  FileText,
   Camera,
   Search,
   Handshake
@@ -71,11 +70,11 @@ const ServicesPage = () => {
       title: 'Rent Property',
       description: 'Whether you\'re looking to rent or lease out your property, we provide comprehensive rental services.',
       features: [
-        'Tenant screening and verification',
-        'Lease agreement preparation',
-        'Property maintenance coordination',
+        'Tenant screening and Emirates ID verification',
+        'RERA-compliant lease agreement preparation',
+        'DEWA and property maintenance coordination',
         'Rent collection and management',
-        'Legal compliance support'
+        'Dubai Municipality compliance support'
       ],
       process: [
         'Property assessment and pricing',
@@ -162,11 +161,6 @@ const ServicesPage = () => {
       description: 'High-quality property photography to showcase your home in the best light.',
     },
     {
-      icon: FileText,
-      title: 'Legal Documentation',
-      description: 'Complete assistance with all legal paperwork and documentation.',
-    },
-    {
       icon: Search,
       title: 'Market Research',
       description: 'In-depth market analysis and research for informed decision making.',
@@ -193,8 +187,8 @@ const ServicesPage = () => {
               Our Services
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              Comprehensive real estate solutions tailored to meet all your property needs. 
-              From buying and selling to investment consulting, we've got you covered.
+              Comprehensive Dubai real estate solutions tailored to meet all your property needs.
+              From buying and selling to UAE investment consulting, we've got you covered.
             </p>
           </motion.div>
         </div>
@@ -297,7 +291,7 @@ const ServicesPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {additionalServices.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -344,18 +338,18 @@ const ServicesPage = () => {
             {[
               {
                 icon: Star,
-                title: 'Proven Track Record',
-                description: '500+ successful transactions and 98% client satisfaction rate demonstrate our commitment to excellence.',
+                title: 'Dubai Market Expertise',
+                description: '300+ successful Dubai transactions and 98% client satisfaction rate demonstrate our local market commitment.',
               },
               {
                 icon: Users,
-                title: 'Expert Team',
-                description: 'Our experienced agents bring deep market knowledge and personalized service to every transaction.',
+                title: 'Local Expert Team',
+                description: 'Our Dubai-based agents bring deep local market knowledge and personalized service to every transaction.',
               },
               {
                 icon: DollarSign,
-                title: 'Best Value',
-                description: 'Competitive rates combined with exceptional service ensure you get the best value for your investment.',
+                title: 'UAE Investment Value',
+                description: 'Competitive rates with Dubai market expertise ensure you get the best value for your UAE investment.',
               },
             ].map((benefit, index) => (
               <motion.div
@@ -395,7 +389,7 @@ const ServicesPage = () => {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Contact us today to discuss your real estate needs and discover how we can help you achieve your goals.
+              Contact us today to discuss your Dubai real estate needs and discover how we can help you achieve your UAE property goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn-secondary">

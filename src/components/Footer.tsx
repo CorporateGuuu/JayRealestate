@@ -1,16 +1,10 @@
 import Link from 'next/link';
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin,
-  Home,
-  Building,
-  User,
-  FileText
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Instagram,
+  Linkedin
 } from 'lucide-react';
 
 const Footer = () => {
@@ -33,8 +27,6 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Facebook', href: '#', icon: Facebook },
-    { name: 'Twitter', href: '#', icon: Twitter },
     { name: 'Instagram', href: '#', icon: Instagram },
     { name: 'LinkedIn', href: '#', icon: Linkedin },
   ];
@@ -55,8 +47,8 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Your trusted partner in finding the perfect home. We provide exceptional real estate services 
-              with a commitment to excellence and customer satisfaction.
+              Your trusted partner in Dubai real estate. With 5+ years of local expertise, we provide exceptional
+              property services across Dubai's most prestigious neighborhoods.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -112,18 +104,18 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div className="text-gray-400 text-sm">
-                  <p>123 Real Estate Ave</p>
-                  <p>Suite 100</p>
-                  <p>City, State 12345</p>
+                  <p>Sultan Business Centre, Oud Metha</p>
+                  <p>Office Number: 137-A-75</p>
+                  <p>Dubai, UAE</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">(555) 123-4567</span>
+                <span className="text-gray-400 text-sm">+971 55 208 9241</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">info@jayrealestate.com</span>
+                <span className="text-gray-400 text-sm">info@jayrealestate.ae</span>
               </div>
             </div>
           </div>

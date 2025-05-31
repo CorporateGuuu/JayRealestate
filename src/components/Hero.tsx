@@ -61,8 +61,8 @@ const Hero = () => {
             <span className="block" style={{ color: 'var(--accent-light)' }}>Dream Home</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            Discover the perfect property with JAY Real Estate. 
-            Your journey to homeownership starts here.
+            Discover premium properties in Dubai's most prestigious locations.
+            Your journey to Dubai homeownership starts here.
           </p>
 
           {/* Search Form */}
@@ -82,7 +82,7 @@ const Hero = () => {
                   <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
                     type="text"
-                    placeholder="Enter city or area"
+                    placeholder="Enter Dubai area (e.g., Downtown, Marina, Palm Jumeirah)"
                     value={searchData.location}
                     onChange={(e) => setSearchData({ ...searchData, location: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent text-gray-900"
@@ -151,23 +151,19 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-2xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-2xl mx-auto"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>500+</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>300+</div>
               <div className="text-sm text-gray-300">Properties Sold</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>15+</div>
-              <div className="text-sm text-gray-300">Years Experience</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>5+</div>
+              <div className="text-sm text-gray-300">Years in Dubai</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>1000+</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>500+</div>
               <div className="text-sm text-gray-300">Happy Clients</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>50+</div>
-              <div className="text-sm text-gray-300">Expert Agents</div>
             </div>
           </motion.div>
         </motion.div>

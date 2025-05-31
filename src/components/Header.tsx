@@ -34,7 +34,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-12">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -77,7 +77,7 @@ const Header = () => {
             className="lg:hidden bg-white border-t border-gray-200"
           >
             <div className="container-custom py-4">
-              <nav className="flex flex-col space-y-4">
+              <nav className="flex flex-col space-y-6">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}

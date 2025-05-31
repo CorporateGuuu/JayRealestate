@@ -20,9 +20,9 @@ const FeaturedProperties = () => {
   const properties = [
     {
       id: 1,
-      title: 'Modern Luxury Villa',
-      location: 'Beverly Hills, CA',
-      price: 2850000,
+      title: 'Luxury Villa with Burj Khalifa View',
+      location: 'Downtown Dubai',
+      price: 8500000,
       image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 5,
       baths: 4,
@@ -32,9 +32,9 @@ const FeaturedProperties = () => {
     },
     {
       id: 2,
-      title: 'Downtown Penthouse',
-      location: 'Manhattan, NY',
-      price: 3200000,
+      title: 'Marina Penthouse',
+      location: 'Dubai Marina',
+      price: 12000000,
       image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 3,
       baths: 3,
@@ -44,21 +44,21 @@ const FeaturedProperties = () => {
     },
     {
       id: 3,
-      title: 'Waterfront Estate',
-      location: 'Miami Beach, FL',
-      price: 4500000,
+      title: 'Palm Jumeirah Waterfront Villa',
+      location: 'Palm Jumeirah',
+      price: 15000000,
       image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 6,
       baths: 5,
       sqft: 5500,
-      type: 'Estate',
+      type: 'Villa',
       featured: true,
     },
     {
       id: 4,
-      title: 'Contemporary Townhouse',
-      location: 'San Francisco, CA',
-      price: 1850000,
+      title: 'Business Bay Townhouse',
+      location: 'Business Bay',
+      price: 4200000,
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 4,
       baths: 3,
@@ -68,26 +68,26 @@ const FeaturedProperties = () => {
     },
     {
       id: 5,
-      title: 'Luxury Condo',
-      location: 'Chicago, IL',
-      price: 950000,
+      title: 'DIFC Luxury Apartment',
+      location: 'Dubai International Financial Centre',
+      price: 2800000,
       image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 2,
       baths: 2,
       sqft: 1800,
-      type: 'Condo',
+      type: 'Apartment',
       featured: true,
     },
     {
       id: 6,
-      title: 'Mountain Retreat',
-      location: 'Aspen, CO',
-      price: 3750000,
+      title: 'Emirates Hills Mansion',
+      location: 'Emirates Hills',
+      price: 18000000,
       image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 5,
       baths: 4,
       sqft: 4800,
-      type: 'Cabin',
+      type: 'Mansion',
       featured: true,
     },
   ];
@@ -123,7 +123,7 @@ const FeaturedProperties = () => {
             Featured Properties
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover our handpicked selection of premium properties in the most desirable locations
+            Discover our handpicked selection of premium properties in Dubai's most prestigious neighborhoods
           </p>
         </motion.div>
 
