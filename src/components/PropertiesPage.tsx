@@ -4,19 +4,32 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  Search, 
-  Filter, 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Square, 
-  Heart, 
+import {
+  Search,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Heart,
   Eye,
   Grid,
   List,
   SlidersHorizontal
 } from 'lucide-react';
+
+interface Property {
+  id: number;
+  title: string;
+  location: string;
+  price: number;
+  image: string;
+  beds: number;
+  baths: number;
+  sqft: number;
+  type: string;
+  featured: boolean;
+  description: string;
+}
 
 const PropertiesPage = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -36,107 +49,107 @@ const PropertiesPage = () => {
   const properties = [
     {
       id: 1,
-      title: 'Modern Luxury Villa',
-      location: 'Beverly Hills, CA',
-      price: 2850000,
+      title: 'Luxury Villa with Burj Khalifa View',
+      location: 'Downtown Dubai',
+      price: 12500000,
       image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 5,
       baths: 4,
       sqft: 4200,
       type: 'Villa',
       featured: true,
-      description: 'Stunning modern villa with panoramic city views, premium finishes, and resort-style amenities.',
+      description: 'Stunning modern villa with panoramic Burj Khalifa views, premium finishes, and luxury amenities in Downtown Dubai.',
     },
     {
       id: 2,
-      title: 'Downtown Penthouse',
-      location: 'Manhattan, NY',
-      price: 3200000,
+      title: 'Marina Penthouse',
+      location: 'Dubai Marina',
+      price: 18000000,
       image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 3,
       baths: 3,
       sqft: 2800,
       type: 'Penthouse',
       featured: true,
-      description: 'Luxurious penthouse in the heart of Manhattan with floor-to-ceiling windows and private terrace.',
+      description: 'Luxurious penthouse in Dubai Marina with breathtaking marina and sea views, floor-to-ceiling windows and private terrace.',
     },
     {
       id: 3,
-      title: 'Waterfront Estate',
-      location: 'Miami Beach, FL',
-      price: 4500000,
+      title: 'Palm Jumeirah Waterfront Villa',
+      location: 'Palm Jumeirah',
+      price: 25000000,
       image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 6,
       baths: 5,
       sqft: 5500,
-      type: 'Estate',
+      type: 'Villa',
       featured: true,
-      description: 'Magnificent waterfront estate with private beach access, infinity pool, and yacht dock.',
+      description: 'Magnificent waterfront villa on Palm Jumeirah with private beach access, infinity pool, and stunning views.',
     },
     {
       id: 4,
-      title: 'Contemporary Townhouse',
-      location: 'San Francisco, CA',
-      price: 1850000,
+      title: 'Business Bay Townhouse',
+      location: 'Business Bay',
+      price: 6800000,
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 4,
       baths: 3,
       sqft: 3200,
       type: 'Townhouse',
       featured: false,
-      description: 'Beautifully designed townhouse in prestigious neighborhood with modern amenities.',
+      description: 'Beautifully designed townhouse in Business Bay with modern amenities and canal views.',
     },
     {
       id: 5,
-      title: 'Luxury Condo',
-      location: 'Chicago, IL',
-      price: 950000,
+      title: 'DIFC Luxury Apartment',
+      location: 'Dubai International Financial Centre',
+      price: 4200000,
       image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       beds: 2,
       baths: 2,
       sqft: 1800,
-      type: 'Condo',
+      type: 'Apartment',
       featured: false,
-      description: 'Elegant condo with stunning lake views and premium building amenities.',
+      description: 'Elegant apartment in DIFC with stunning city views and premium building amenities.',
     },
     {
       id: 6,
-      title: 'Mountain Retreat',
-      location: 'Aspen, CO',
-      price: 3750000,
+      title: 'Emirates Hills Mansion',
+      location: 'Emirates Hills',
+      price: 35000000,
       image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 5,
-      baths: 4,
-      sqft: 4800,
-      type: 'Cabin',
+      beds: 7,
+      baths: 6,
+      sqft: 8500,
+      type: 'Mansion',
       featured: false,
-      description: 'Luxurious mountain retreat with ski-in/ski-out access and breathtaking alpine views.',
+      description: 'Luxurious mansion in Emirates Hills with golf course views and breathtaking amenities.',
     },
     {
       id: 7,
-      title: 'Historic Mansion',
-      location: 'Boston, MA',
-      price: 2200000,
+      title: 'Jumeirah Beach Residence',
+      location: 'Jumeirah Beach Residence',
+      price: 8500000,
       image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 6,
+      beds: 4,
       baths: 4,
-      sqft: 5200,
-      type: 'Mansion',
+      sqft: 3200,
+      type: 'Apartment',
       featured: false,
-      description: 'Beautifully restored historic mansion with original architectural details and modern updates.',
+      description: 'Stunning beachfront apartment in JBR with direct beach access and panoramic sea views.',
     },
     {
       id: 8,
-      title: 'Beachfront House',
-      location: 'Malibu, CA',
-      price: 5200000,
+      title: 'Arabian Ranches Villa',
+      location: 'Arabian Ranches',
+      price: 9200000,
       image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 4,
+      beds: 5,
       baths: 4,
-      sqft: 3800,
-      type: 'House',
+      sqft: 4500,
+      type: 'Villa',
       featured: true,
-      description: 'Stunning beachfront house with direct ocean access and panoramic sunset views.',
+      description: 'Beautiful family villa in Arabian Ranches with golf course access and community amenities.',
     },
   ];
 
@@ -149,15 +162,15 @@ const PropertiesPage = () => {
   };
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-AE', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'AED',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
   };
 
-  const PropertyCard = ({ property, index }: { property: any; index: number }) => (
+  const PropertyCard = ({ property, index }: { property: Property; index: number }) => (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
@@ -264,7 +277,7 @@ const PropertiesPage = () => {
             Properties
           </h1>
           <p className="text-xl text-gray-600">
-            Discover your perfect home from our curated collection of premium properties
+            Discover your perfect home from our curated collection of premium Dubai properties
           </p>
         </div>
       </div>
@@ -378,10 +391,14 @@ const PropertiesPage = () => {
                 className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="all">All Locations</option>
-                <option value="ca">California</option>
-                <option value="ny">New York</option>
-                <option value="fl">Florida</option>
-                <option value="il">Illinois</option>
+                <option value="downtown">Downtown Dubai</option>
+                <option value="marina">Dubai Marina</option>
+                <option value="palm">Palm Jumeirah</option>
+                <option value="business-bay">Business Bay</option>
+                <option value="difc">DIFC</option>
+                <option value="emirates-hills">Emirates Hills</option>
+                <option value="jbr">JBR</option>
+                <option value="arabian-ranches">Arabian Ranches</option>
               </select>
             </motion.div>
           )}

@@ -243,7 +243,7 @@ const ServicesPage = () => {
                       href="/contact"
                       className="btn-primary inline-flex items-center"
                     >
-                      Get Started
+                      Contact Us
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Link>
                   </div>
@@ -386,7 +386,7 @@ const ServicesPage = () => {
             className="text-center text-white"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Get Started?
+              Ready to Contact Us?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Contact us today to discuss your Dubai real estate needs and discover how we can help you achieve your UAE property goals.

@@ -110,7 +110,7 @@ const FeaturedProperties = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="section-padding bg-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -127,7 +127,7 @@ const FeaturedProperties = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="property-grid">
           {properties.map((property, index) => (
             <motion.div
               key={property.id}

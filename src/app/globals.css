@@ -4,12 +4,17 @@
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
-  --primary: #1a365d;
-  --primary-light: #2d5a87;
-  --primary-dark: #0f2a44;
-  --secondary: #f7fafc;
-  --accent: #d69e2e;
-  --accent-light: #ecc94b;
+  /* Updated primary colors to match JAY logo blue gradient */
+  --primary: #1e40af;
+  --primary-light: #3b82f6;
+  --primary-dark: #1d4ed8;
+  --primary-darker: #1e3a8a;
+  --secondary: #f8fafc;
+  /* Updated accent colors for better harmony */
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --accent-dark: #d97706;
+  /* Enhanced gray scale for better contrast */
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -20,6 +25,17 @@
   --gray-700: #374151;
   --gray-800: #1f2937;
   --gray-900: #111827;
+  /* Additional blue shades for logo harmony */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
 }
 
 @theme inline {
@@ -43,7 +59,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  line-height: 1.6;
+  line-height: 1.7; /* Improved readability */
   overflow-x: hidden;
 }
 
@@ -56,9 +72,14 @@ body {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* Enhanced button styles with better spacing and mobile optimization */
   .btn-primary {
     background: var(--primary);
-    @apply text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply text-white font-semibold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    min-height: 44px; /* Minimum touch target for mobile */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-primary:hover {
@@ -66,18 +87,35 @@ body {
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 font-semibold py-3 px-8 rounded-xl border-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg;
+    @apply bg-white hover:bg-gray-50 font-semibold py-4 px-10 rounded-xl border-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg;
     color: var(--primary);
     border-color: var(--primary);
+    min-height: 44px; /* Minimum touch target for mobile */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-accent {
     background: var(--accent);
-    @apply text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply text-white font-semibold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    min-height: 44px; /* Minimum touch target for mobile */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-accent:hover {
     background: var(--accent-light);
+  }
+
+  /* Button group spacing */
+  .btn-group {
+    @apply flex flex-col sm:flex-row gap-4;
+  }
+
+  .btn-group > * {
+    @apply flex-1 sm:flex-none;
   }
 
   .card-hover {
@@ -88,8 +126,41 @@ body {
     @apply bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden;
   }
 
+  /* Enhanced section spacing for better visual hierarchy */
   .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  .section-padding-sm {
     @apply py-16 md:py-24;
+  }
+
+  /* Enhanced card spacing and padding */
+  .card-enhanced {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden p-8 md:p-10;
+  }
+
+  /* Property grid with optimized spacing */
+  .property-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10;
+  }
+
+  /* Form field enhancements for mobile */
+  .form-field {
+    @apply w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+    min-height: 44px; /* Minimum touch target */
+  }
+
+  .form-field:focus {
+    @apply ring-2 ring-blue-500 border-transparent;
+  }
+
+  .form-group {
+    @apply space-y-4 md:space-y-6;
+  }
+
+  .form-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6;
   }
 
   .text-gradient {
@@ -104,7 +175,7 @@ body {
   }
 
   .hero-gradient {
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(15, 42, 68, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.9) 0%, rgba(29, 78, 216, 0.9) 100%);
   }
 
   .accent-gradient {

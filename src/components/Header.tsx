@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Home, Phone, User, Building, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,14 +24,8 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-2xl">J</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold" style={{ color: 'var(--primary)' }}>JAY</span>
-              <span className="text-sm font-medium" style={{ color: 'var(--accent)' }}>Real Estate</span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <Logo className="hover:opacity-80 transition-opacity duration-200" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +46,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
             <Link href="/contact" className="btn-primary">
-              Get Started
+              Contact Us
             </Link>
           </div>
 
@@ -95,7 +90,7 @@ const Header = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className="btn-primary w-full text-center"
                   >
-                    Get Started
+                    Contact Us
                   </Link>
                 </div>
               </nav>

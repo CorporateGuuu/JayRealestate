@@ -6,17 +6,39 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const WhatsAppWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const phoneNumber = '+971552089241'; // WhatsApp number without spaces
+  const phoneNumber = '971552089241'; // WhatsApp number without + and spaces
   const message = 'Hello! I am interested in your real estate services in Dubai.';
 
   const handleWhatsAppClick = () => {
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    setIsOpen(false);
+    try {
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      // Check if mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // On mobile, try to open WhatsApp app directly
+        window.location.href = whatsappUrl;
+      } else {
+        // On desktop, open WhatsApp Web in new tab
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }
+
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Error opening WhatsApp:', error);
+      // Fallback: copy phone number to clipboard
+      navigator.clipboard?.writeText('+971 55 208 9241').then(() => {
+        alert('Phone number copied to clipboard: +971 55 208 9241');
+      }).catch(() => {
+        alert('Please contact us at: +971 55 208 9241');
+      });
+      setIsOpen(false);
+    }
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -24,7 +46,7 @@ const WhatsAppWidget = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 max-w-sm"
+            className="mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-6 max-w-xs sm:max-w-sm mx-4 sm:mx-0"
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
@@ -70,7 +92,7 @@ const WhatsAppWidget = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-200"
+        className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-200"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -99,7 +121,7 @@ const WhatsAppWidget = () => {
 
       {/* Pulse animation */}
       {!isOpen && (
-        <div className="absolute inset-0 w-16 h-16 bg-green-500 rounded-full animate-ping opacity-20"></div>
+        <div className="absolute inset-0 w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full animate-ping opacity-20"></div>
       )}
     </div>
   );

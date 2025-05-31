@@ -11,6 +11,12 @@ interface Message {
   timestamp: Date;
 }
 
+interface ChatResponse {
+  response: string;
+  sessionId: string;
+  timestamp: string;
+}
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -23,6 +29,8 @@ const ChatBot = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -41,40 +49,50 @@ const ChatBot = () => {
     'Contact an agent',
   ];
 
-  const botResponses: { [key: string]: string } = {
-    'property prices': 'Dubai property prices vary by location. Downtown Dubai averages AED 1,200-2,000 per sq ft, while Dubai Marina ranges from AED 1,000-1,800 per sq ft. Would you like specific information about any area?',
-    'available properties': 'We have excellent properties available in Downtown Dubai, Dubai Marina, Palm Jumeirah, and Business Bay. What type of property are you looking for - villa, apartment, or penthouse?',
-    'schedule': 'I\'d be happy to help you schedule a property viewing! Please contact us at +971 55 208 9241 or use our WhatsApp chat for immediate assistance.',
-    'investment': 'Dubai offers excellent investment opportunities with high rental yields (5-8%) and capital appreciation. Popular areas for investment include Business Bay, Dubai Marina, and Downtown Dubai.',
-    'contact': 'You can reach our team at +971 55 208 9241 or email info@jayrealestate.ae. Our office is located at Sultan Business Centre, Oud Metha, Office: 137-A-75, Dubai.',
-    'default': 'Thank you for your question! For detailed information about Dubai real estate, please contact our expert team at +971 55 208 9241 or visit our office. We\'re here to help!',
-  };
+  // API call to get bot response
+  const getBotResponse = async (userMessage: string): Promise<string> => {
+    try {
+      setError(null);
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          sessionId: sessionId,
+        }),
+      });
 
-  const getBotResponse = (userMessage: string): string => {
-    const message = userMessage.toLowerCase();
-    
-    if (message.includes('price') || message.includes('cost')) {
-      return botResponses['property prices'];
-    } else if (message.includes('available') || message.includes('property') || message.includes('properties')) {
-      return botResponses['available properties'];
-    } else if (message.includes('schedule') || message.includes('viewing') || message.includes('visit')) {
-      return botResponses['schedule'];
-    } else if (message.includes('investment') || message.includes('invest') || message.includes('roi')) {
-      return botResponses['investment'];
-    } else if (message.includes('contact') || message.includes('phone') || message.includes('call')) {
-      return botResponses['contact'];
-    } else {
-      return botResponses['default'];
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+
+      const data: ChatResponse = await response.json();
+
+      // Update session ID if new
+      if (data.sessionId && data.sessionId !== sessionId) {
+        setSessionId(data.sessionId);
+      }
+
+      return data.response;
+    } catch (error) {
+      console.error('Error getting bot response:', error);
+      setError('Sorry, I\'m having trouble connecting. Please try again or contact us directly at +971 55 208 9241.');
+
+      // Fallback response
+      return 'I apologize, but I\'m experiencing technical difficulties. Please contact our team directly at +971 55 208 9241 or info@jayrealestate.ae for immediate assistance with your Dubai real estate needs.';
     }
   };
 
-  const handleSendMessage = (text: string) => {
-    if (!text.trim()) return;
+  const handleSendMessage = async (text: string) => {
+    if (!text.trim() || isTyping) return;
 
     // Add user message
     const userMessage: Message = {
       id: Date.now(),
-      text: text,
+      text: text.trim(),
       isBot: false,
       timestamp: new Date(),
     };
@@ -83,17 +101,30 @@ const ChatBot = () => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate bot typing delay
-    setTimeout(() => {
+    try {
+      // Get bot response from API
+      const responseText = await getBotResponse(text.trim());
+
       const botResponse: Message = {
         id: Date.now() + 1,
-        text: getBotResponse(text),
+        text: responseText,
         isBot: true,
         timestamp: new Date(),
       };
+
       setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error('Error in handleSendMessage:', error);
+      const errorMessage: Message = {
+        id: Date.now() + 1,
+        text: 'I apologize for the technical difficulty. Please contact us directly at +971 55 208 9241 for immediate assistance.',
+        isBot: true,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleQuickReply = (reply: string) => {
@@ -106,7 +137,7 @@ const ChatBot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -114,7 +145,7 @@ const ChatBot = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 w-80 h-96 flex flex-col"
+            className="mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 w-72 sm:w-80 h-80 sm:h-96 flex flex-col mx-4 sm:mx-0"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-blue-600 text-white rounded-t-2xl">
@@ -134,6 +165,13 @@ const ChatBot = () => {
                 <X className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Error Display */}
+            {error && (
+              <div className="px-4 py-2 bg-red-50 border-l-4 border-red-400">
+                <p className="text-red-700 text-sm">{error}</p>
+              </div>
+            )}
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -227,7 +265,7 @@ const ChatBot = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="w-16 h-16 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-200"
+        className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-200"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -256,7 +294,7 @@ const ChatBot = () => {
 
       {/* Pulse animation */}
       {!isOpen && (
-        <div className="absolute inset-0 w-16 h-16 bg-blue-600 rounded-full animate-ping opacity-20"></div>
+        <div className="absolute inset-0 w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 rounded-full animate-ping opacity-20"></div>
       )}
     </div>
   );

@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
+import {
+  MapPin,
+  Phone,
+  Mail,
   Clock,
   Send,
   CheckCircle,
@@ -14,6 +14,7 @@ import {
   Calendar,
   User
 } from 'lucide-react';
+import InteractiveMap from './InteractiveMap';
 
 interface ContactForm {
   name: string;
@@ -34,11 +35,65 @@ const ContactPage = () => {
     console.log('Form submitted:', data);
     setIsSubmitted(true);
     reset();
-    
+
     // Reset success message after 5 seconds
     setTimeout(() => {
       setIsSubmitted(false);
     }, 5000);
+  };
+
+  // Interactive contact functions
+  const handleCallClick = () => {
+    try {
+      window.location.href = 'tel:+971552089241';
+    } catch (error) {
+      console.error('Error initiating call:', error);
+      navigator.clipboard?.writeText('+971 55 208 9241').then(() => {
+        alert('Phone number copied to clipboard: +971 55 208 9241');
+      }).catch(() => {
+        alert('Please call: +971 55 208 9241');
+      });
+    }
+  };
+
+  const handleEmailClick = () => {
+    try {
+      const subject = encodeURIComponent('Dubai Real Estate Inquiry');
+      const body = encodeURIComponent('Hello JAY Real Estate,\n\nI am interested in your Dubai real estate services. Please contact me to discuss my requirements.\n\nBest regards');
+      window.location.href = `mailto:info@jayrealestate.ae?subject=${subject}&body=${body}`;
+    } catch (error) {
+      console.error('Error opening email client:', error);
+      navigator.clipboard?.writeText('info@jayrealestate.ae').then(() => {
+        alert('Email address copied to clipboard: info@jayrealestate.ae');
+      }).catch(() => {
+        alert('Please email us at: info@jayrealestate.ae');
+      });
+    }
+  };
+
+  const handleDirectionsClick = () => {
+    try {
+      const address = 'Sultan Business Centre, Oud Metha, Office Number: 137-A-75, Dubai, UAE';
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+      const appleMapsUrl = `http://maps.apple.com/?daddr=${encodeURIComponent(address)}`;
+
+      // Detect if user is on iOS
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+      if (isIOS) {
+        window.open(appleMapsUrl, '_blank');
+      } else {
+        window.open(googleMapsUrl, '_blank');
+      }
+    } catch (error) {
+      console.error('Error opening maps:', error);
+      const address = 'Sultan Business Centre, Oud Metha, Office Number: 137-A-75, Dubai, UAE';
+      navigator.clipboard?.writeText(address).then(() => {
+        alert('Address copied to clipboard: ' + address);
+      }).catch(() => {
+        alert('Please navigate to: ' + address);
+      });
+    }
   };
 
   const contactInfo = [
@@ -47,18 +102,21 @@ const ContactPage = () => {
       title: 'Visit Our Office',
       details: ['Sultan Business Centre, Oud Metha', 'Office Number: 137-A-75', 'Dubai, UAE'],
       action: 'Get Directions',
+      onClick: handleDirectionsClick,
     },
     {
       icon: Phone,
       title: 'Call Us',
       details: ['+971 55 208 9241', 'Sun-Thu: 9AM-6PM GST', 'Sat: 10AM-4PM GST'],
       action: 'Call Now',
+      onClick: handleCallClick,
     },
     {
       icon: Mail,
       title: 'Email Us',
       details: ['info@jayrealestate.ae', 'dubai@jayrealestate.ae', 'We reply within 24 hours'],
       action: 'Send Email',
+      onClick: handleEmailClick,
     },
   ];
 
@@ -115,7 +173,10 @@ const ContactPage = () => {
                     </p>
                   ))}
                 </div>
-                <button className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
+                <button
+                  onClick={info.onClick}
+                  className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 hover:underline"
+                >
                   {info.action}
                 </button>
               </motion.div>
@@ -156,8 +217,8 @@ const ContactPage = () => {
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="form-group">
+                <div className="form-grid">
                   <div>
                     <label className="block text-gray-700 text-sm font-semibold mb-2">
                       Full Name *
@@ -165,7 +226,7 @@ const ContactPage = () => {
                     <input
                       type="text"
                       {...register('name', { required: 'Name is required' })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="form-field"
                       placeholder="Your full name"
                     />
                     {errors.name && (
@@ -186,7 +247,7 @@ const ContactPage = () => {
                           message: 'Invalid email address'
                         }
                       })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="form-field"
                       placeholder="your@email.com"
                     />
                     {errors.email && (
@@ -195,7 +256,7 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="form-grid">
                   <div>
                     <label className="block text-gray-700 text-sm font-semibold mb-2">
                       Phone Number
@@ -203,8 +264,8 @@ const ContactPage = () => {
                     <input
                       type="tel"
                       {...register('phone')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="(555) 123-4567"
+                      className="form-field"
+                      placeholder="+971 55 208 9241"
                     />
                   </div>
 
@@ -214,7 +275,7 @@ const ContactPage = () => {
                     </label>
                     <select
                       {...register('subject', { required: 'Subject is required' })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="form-field"
                     >
                       <option value="">Select a subject</option>
                       <option value="buying">Buying a Property</option>
@@ -230,14 +291,14 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="form-grid">
                   <div>
                     <label className="block text-gray-700 text-sm font-semibold mb-2">
                       Property Type
                     </label>
                     <select
                       {...register('propertyType')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="form-field"
                     >
                       <option value="">Select property type</option>
                       <option value="house">House</option>
@@ -254,14 +315,14 @@ const ContactPage = () => {
                     </label>
                     <select
                       {...register('budget')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="form-field"
                     >
                       <option value="">Select budget range</option>
-                      <option value="0-200k">$0 - $200,000</option>
-                      <option value="200k-500k">$200,000 - $500,000</option>
-                      <option value="500k-1m">$500,000 - $1,000,000</option>
-                      <option value="1m-2m">$1,000,000 - $2,000,000</option>
-                      <option value="2m+">$2,000,000+</option>
+                      <option value="0-2m">AED 0 - 2M</option>
+                      <option value="2m-5m">AED 2M - 5M</option>
+                      <option value="5m-10m">AED 5M - 10M</option>
+                      <option value="10m-20m">AED 10M - 20M</option>
+                      <option value="20m+">AED 20M+</option>
                     </select>
                   </div>
                 </div>
@@ -273,8 +334,8 @@ const ContactPage = () => {
                   <textarea
                     {...register('message', { required: 'Message is required' })}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                    placeholder="Tell us about your real estate needs..."
+                    className="form-field resize-none"
+                    placeholder="Tell us about your Dubai real estate needs..."
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
@@ -340,18 +401,12 @@ const ContactPage = () => {
                 </button>
               </div>
 
-              {/* Map Placeholder */}
+              {/* Interactive Map */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   Find Us
                 </h3>
-                <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <MapPin className="w-12 h-12 mx-auto mb-2" />
-                    <p>Interactive Map</p>
-                    <p className="text-sm">Sultan Business Centre, Oud Metha, Office: 137-A-75, Dubai</p>
-                  </div>
-                </div>
+                <InteractiveMap />
               </div>
             </motion.div>
           </div>

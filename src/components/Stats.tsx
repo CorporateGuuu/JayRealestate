@@ -61,7 +61,7 @@ const Stats = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="section-padding bg-gray-50">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -78,7 +78,7 @@ const Stats = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}

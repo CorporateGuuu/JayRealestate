@@ -6,7 +6,7 @@ import { ArrowRight, Phone, Mail, MessageCircle } from 'lucide-react';
 
 const CTA = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -32,12 +32,12 @@ const CTA = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="btn-group justify-center mb-12">
               <Link
                 href="/contact"
                 className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
               >
-                Get Started Today
+                Contact Us Today
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link

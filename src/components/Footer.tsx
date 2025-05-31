@@ -6,6 +6,7 @@ import {
   Instagram,
   Linkedin
 } from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -37,15 +38,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">J</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold">JAY</span>
-                <span className="text-sm text-gray-400 -mt-1">Real Estate</span>
-              </div>
-            </div>
+            <Logo className="text-white" />
             <p className="text-gray-400 text-sm leading-relaxed">
               Your trusted partner in Dubai real estate. With 5+ years of local expertise, we provide exceptional
               property services across Dubai's most prestigious neighborhoods.

@@ -60,7 +60,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="section-padding bg-gray-50">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -77,7 +77,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -177,12 +177,12 @@ const Services = () => {
         >
           <div className="bg-blue-600 rounded-2xl p-8 md:p-12 text-white">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Get Started?
+              Ready to Contact Us?
             </h3>
             <p className="text-xl mb-8 text-blue-100">
               Let our experts help you with your real estate journey
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="btn-group justify-center">
               <Link href="/contact" className="btn-secondary">
                 Contact Us Today
               </Link>
