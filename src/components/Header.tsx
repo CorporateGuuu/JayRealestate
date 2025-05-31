@@ -23,13 +23,13 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">J</span>
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-2xl">J</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">JAY</span>
-              <span className="text-xs text-gray-600 -mt-1">Real Estate</span>
+              <span className="text-2xl font-bold" style={{ color: 'var(--primary)' }}>JAY</span>
+              <span className="text-sm font-medium" style={{ color: 'var(--accent)' }}>Real Estate</span>
             </div>
           </Link>
 
@@ -39,7 +39,8 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+                className="flex items-center space-x-1 text-gray-700 hover:opacity-80 transition-colors duration-200 font-medium"
+                style={{ '--hover-color': 'var(--primary)' } as React.CSSProperties}
               >
                 <item.icon className="w-4 h-4" />
                 <span>{item.name}</span>
@@ -57,7 +58,8 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors duration-200"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+            style={{ '--hover-color': 'var(--primary)' } as React.CSSProperties}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

@@ -3,11 +3,23 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --secondary: #f8fafc;
-  --accent: #fbbf24;
+  --foreground: #1a1a1a;
+  --primary: #1a365d;
+  --primary-light: #2d5a87;
+  --primary-dark: #0f2a44;
+  --secondary: #f7fafc;
+  --accent: #d69e2e;
+  --accent-light: #ecc94b;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
 }
 
 @theme inline {
@@ -45,22 +57,57 @@ body {
   }
 
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    background: var(--primary);
+    @apply text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-light);
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-blue-600 font-semibold py-3 px-6 rounded-lg border-2 border-blue-600 transition-all duration-300 transform hover:scale-105;
+    @apply bg-white hover:bg-gray-50 font-semibold py-3 px-8 rounded-xl border-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg;
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    @apply text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+
+  .btn-accent:hover {
+    background: var(--accent-light);
   }
 
   .card-hover {
-    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-2xl;
+    @apply transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .card-modern {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .gradient-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   }
 
   .hero-gradient {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(29, 78, 216, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(15, 42, 68, 0.9) 100%);
+  }
+
+  .accent-gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
   }
 }

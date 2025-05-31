@@ -146,7 +146,7 @@ const FeaturedProperties = () => {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="gradient-bg text-white px-3 py-1 rounded-full text-sm font-semibold">
                     {property.type}
                   </span>
                 </div>
@@ -177,7 +177,7 @@ const FeaturedProperties = () => {
                   {property.location}
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:opacity-80 transition-colors duration-200" style={{ '--hover-color': 'var(--primary)' } as React.CSSProperties}>
                   {property.title}
                 </h3>
                 
@@ -199,12 +199,13 @@ const FeaturedProperties = () => {
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-2xl font-bold" style={{ color: 'var(--primary)' }}>
                     {formatPrice(property.price)}
                   </div>
                   <Link
                     href={`/properties/${property.id}`}
-                    className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                    className="flex items-center font-semibold transition-colors duration-200 hover:opacity-80"
+                    style={{ color: 'var(--primary)' }}
                   >
                     View Details
                     <ArrowRight className="w-4 h-4 ml-1" />

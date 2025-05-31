@@ -58,7 +58,7 @@ const Hero = () => {
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             Find Your
-            <span className="block text-yellow-400">Dream Home</span>
+            <span className="block" style={{ color: 'var(--accent-light)' }}>Dream Home</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
             Discover the perfect property with JAY Real Estate. 
@@ -85,7 +85,8 @@ const Hero = () => {
                     placeholder="Enter city or area"
                     value={searchData.location}
                     onChange={(e) => setSearchData({ ...searchData, location: e.target.value })}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent text-gray-900"
+                    style={{ '--focus-ring-color': 'var(--primary)' } as React.CSSProperties}
                   />
                 </div>
               </div>
@@ -136,7 +137,7 @@ const Hero = () => {
               <div className="flex items-end">
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
+                  className="w-full btn-primary flex items-center justify-center space-x-2"
                 >
                   <Search className="w-5 h-5" />
                   <span>Search</span>
@@ -153,19 +154,19 @@ const Hero = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-2xl mx-auto"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400">500+</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>500+</div>
               <div className="text-sm text-gray-300">Properties Sold</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400">15+</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>15+</div>
               <div className="text-sm text-gray-300">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400">1000+</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>1000+</div>
               <div className="text-sm text-gray-300">Happy Clients</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400">50+</div>
+              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>50+</div>
               <div className="text-sm text-gray-300">Expert Agents</div>
             </div>
           </motion.div>
