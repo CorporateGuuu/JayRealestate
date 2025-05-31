@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, MapPin, Home, DollarSign } from 'lucide-react';
+import { Search, MapPin, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ const Hero = () => {
   const [searchData, setSearchData] = useState({
     location: '',
     propertyType: '',
-    priceRange: '',
+    bedrooms: '',
   });
 
   const handleSearch = (e: React.FormEvent) => {
@@ -21,21 +21,19 @@ const Hero = () => {
 
   const propertyTypes = [
     'All Types',
-    'House',
     'Apartment',
-    'Condo',
-    'Townhouse',
     'Villa',
-    'Commercial',
+    'Townhouse',
+    'Penthouse',
+    'Duplex',
   ];
 
-  const priceRanges = [
-    'Any Price',
-    '$0 - $200,000',
-    '$200,000 - $500,000',
-    '$500,000 - $1,000,000',
-    '$1,000,000 - $2,000,000',
-    '$2,000,000+',
+  const bedroomOptions = [
+    'Any Bedrooms',
+    '1 Bedroom',
+    '2 Bedrooms',
+    '3 Bedrooms',
+    '4+ Bedrooms',
   ];
 
   return (
@@ -64,12 +62,13 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
             Find Your
-            <span className="block" style={{ color: 'var(--accent-light)' }}>Dream Home</span>
+            <span className="block text-yellow-400 drop-shadow-lg">Dream Home</span>
+            <span className="block text-2xl md:text-3xl lg:text-4xl font-medium text-blue-200 mt-2">in Dubai</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            Discover premium properties in Dubai's most prestigious locations.
+          <p className="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto drop-shadow-md">
+            Discover premium off-plan properties in Dubai's most prestigious locations.
             Your journey to Dubai homeownership starts here.
           </p>
 
@@ -120,21 +119,21 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* Price Range */}
+              {/* Bedrooms */}
               <div className="relative">
                 <label className="block text-gray-700 text-sm font-semibold mb-2">
-                  Price Range
+                  Bedrooms
                 </label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <select
-                    value={searchData.priceRange}
-                    onChange={(e) => setSearchData({ ...searchData, priceRange: e.target.value })}
+                    value={searchData.bedrooms}
+                    onChange={(e) => setSearchData({ ...searchData, bedrooms: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 appearance-none"
                   >
-                    {priceRanges.map((range) => (
-                      <option key={range} value={range}>
-                        {range}
+                    {bedroomOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
                       </option>
                     ))}
                   </select>
