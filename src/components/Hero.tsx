@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Search, MapPin, Home, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = () => {
   const [searchData, setSearchData] = useState({
@@ -153,24 +154,25 @@ const Hero = () => {
             </form>
           </motion.div>
 
-          {/* Quick Stats */}
+          {/* Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-2xl mx-auto"
+            className="mt-12 max-w-2xl mx-auto"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>300+</div>
-              <div className="text-sm text-gray-300">Properties Sold</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>5+</div>
-              <div className="text-sm text-gray-300">Years in Dubai</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--accent-light)' }}>500+</div>
-              <div className="text-sm text-gray-300">Happy Clients</div>
+              <p className="text-lg text-gray-200 mb-6">
+                Ready to find your dream property in Dubai?
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/properties" className="btn-primary">
+                  Browse Properties
+                </Link>
+                <Link href="/contact" className="btn-secondary">
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </motion.div>
         </motion.div>
