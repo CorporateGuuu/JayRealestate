@@ -1,12 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  Home, 
-  TrendingUp, 
-  Key, 
-  Calculator, 
-  Shield, 
+import {
+  Home,
+  TrendingUp,
+  Key,
+  Calculator,
   Users,
   ArrowRight,
   CheckCircle
@@ -42,13 +41,6 @@ const Services = () => {
       description: 'Get accurate property valuations based on current market conditions and comparable sales data.',
       features: ['Market Analysis', 'Comparative Studies', 'Investment Potential', 'Detailed Reports'],
       color: 'bg-orange-500',
-    },
-    {
-      icon: Shield,
-      title: 'Legal Support',
-      description: 'Navigate complex real estate transactions with confidence through our legal support services.',
-      features: ['Contract Review', 'Title Search', 'Legal Documentation', 'Compliance Check'],
-      color: 'bg-red-500',
     },
     {
       icon: Users,

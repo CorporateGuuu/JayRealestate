@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface LogoProps {
   className?: string;
@@ -7,11 +8,11 @@ interface LogoProps {
   variant?: 'full' | 'icon' | 'text';
 }
 
-const Logo: React.FC<LogoProps> = ({ 
-  className = '', 
-  width = 120, 
-  height = 40, 
-  variant = 'full' 
+const Logo: React.FC<LogoProps> = ({
+  className = '',
+  width = 60,
+  height = 40,
+  variant = 'full'
 }) => {
   if (variant === 'icon') {
     return (
@@ -51,71 +52,16 @@ const Logo: React.FC<LogoProps> = ({
   }
 
   return (
-    <div className={`flex items-center space-x-3 ${className}`}>
-      {/* Professional JAY Real Estate Logo */}
-      <svg
-        width="48"
-        height="48"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="flex-shrink-0"
-      >
-        <defs>
-          <linearGradient id="jayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1e40af" />
-            <stop offset="50%" stopColor="#3b82f6" />
-            <stop offset="100%" stopColor="#1d4ed8" />
-          </linearGradient>
-          <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f59e0b" />
-            <stop offset="100%" stopColor="#d97706" />
-          </linearGradient>
-        </defs>
-
-        {/* Background Circle */}
-        <circle cx="24" cy="24" r="23" fill="url(#jayGradient)" stroke="#1e3a8a" strokeWidth="2"/>
-
-        {/* Modern Skyline Silhouette */}
-        <g transform="translate(8, 12)">
-          {/* Building 1 - Tallest */}
-          <rect x="12" y="4" width="8" height="20" fill="white" rx="1"/>
-          <rect x="14" y="6" width="1.5" height="1.5" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="16.5" y="6" width="1.5" height="1.5" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="14" y="8.5" width="1.5" height="1.5" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="16.5" y="8.5" width="1.5" height="1.5" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="14" y="11" width="1.5" height="1.5" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="16.5" y="11" width="1.5" height="1.5" fill="url(#jayGradient)" rx="0.2"/>
-
-          {/* Building 2 - Medium */}
-          <rect x="4" y="8" width="6" height="16" fill="white" rx="1"/>
-          <rect x="5.5" y="10" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="7.5" y="10" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="5.5" y="12" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="7.5" y="12" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-
-          {/* Building 3 - Short */}
-          <rect x="22" y="12" width="6" height="12" fill="white" rx="1"/>
-          <rect x="23.5" y="14" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="25.5" y="14" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="23.5" y="16" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-          <rect x="25.5" y="16" width="1" height="1" fill="url(#jayGradient)" rx="0.2"/>
-
-          {/* Accent Element - Golden Key */}
-          <g transform="translate(14, 18)">
-            <circle cx="2" cy="2" r="1.5" fill="none" stroke="url(#accentGradient)" strokeWidth="0.8"/>
-            <rect x="3.2" y="1.7" width="2" height="0.6" fill="url(#accentGradient)" rx="0.3"/>
-            <rect x="4.5" y="1.2" width="0.4" height="0.6" fill="url(#accentGradient)"/>
-            <rect x="4.5" y="2.2" width="0.4" height="0.6" fill="url(#accentGradient)"/>
-          </g>
-        </g>
-      </svg>
-
-      {/* Professional Text Logo */}
-      <div className="flex flex-col">
-        <span className="text-2xl font-bold text-gray-900 leading-tight tracking-wide">JAY</span>
-        <span className="text-sm font-medium text-gray-600 -mt-1 leading-tight tracking-wider uppercase">Real Estate</span>
-      </div>
+    <div className={`flex items-center ${className}`}>
+      {/* JAY Real Estate Logo from Figma */}
+      <Image
+        src="/jay-logo.svg"
+        alt="JAY Real Estate"
+        width={width}
+        height={height}
+        className="object-contain"
+        priority
+      />
     </div>
   );
 };

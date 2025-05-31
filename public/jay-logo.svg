@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark blue background -->
+  <rect width="500" height="500" fill="#1a1f3a"/>
+  
+  <!-- Golden building outlines -->
+  <g stroke="#d4af37" stroke-width="3" fill="none">
+    <!-- Building 1 - Tallest -->
+    <path d="M200 150 L200 300 L240 300 L240 200 L280 200 L280 150 Z"/>
+    
+    <!-- Building 2 - Medium -->
+    <path d="M240 200 L240 300 L280 300 L280 250 L320 250 L320 200 Z"/>
+    
+    <!-- Building 3 - Shortest -->
+    <path d="M280 250 L280 300 L320 300 L320 280 L340 280 L340 250 Z"/>
+  </g>
+  
+  <!-- JAY text -->
+  <text x="250" y="350" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#d4af37" text-anchor="middle">JAY</text>
+  
+  <!-- REAL ESTATE text -->
+  <text x="250" y="380" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#d4af37" text-anchor="middle" letter-spacing="2px">REAL ESTATE</text>
+</svg>

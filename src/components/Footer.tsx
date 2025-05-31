@@ -38,7 +38,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <Logo className="text-white" />
+            <Logo
+              width={70}
+              height={45}
+              className="text-white"
+            />
             <p className="text-gray-400 text-sm leading-relaxed">
               Your trusted partner in Dubai real estate. With 5+ years of local expertise, we provide exceptional
               property services across Dubai's most prestigious neighborhoods.

@@ -25,7 +25,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Logo className="hover:opacity-80 transition-opacity duration-200" />
+            <Logo
+              width={80}
+              height={50}
+              className="hover:opacity-80 transition-opacity duration-200"
+            />
           </Link>
 
           {/* Desktop Navigation */}
