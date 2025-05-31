@@ -13,7 +13,7 @@ const Testimonials = () => {
       id: 1,
       name: 'Sarah Johnson',
       role: 'Expatriate Family',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
       rating: 5,
       text: 'JAY Real Estate made our move to Dubai seamless. Their team understood our needs as expatriates and helped us find the perfect home in Dubai Marina. Their knowledge of RERA regulations was invaluable!',
       property: 'Luxury Apartment in Dubai Marina',
