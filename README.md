@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JAY Real Estate Website
 
-## Getting Started
+A modern, responsive real estate website built with Next.js 15, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🏠 Features
 
+- **Modern Design**: Clean, professional design with smooth animations
+- **Responsive**: Fully responsive design that works on all devices
+- **Property Listings**: Browse and search through property listings
+- **Property Details**: Detailed property pages with image galleries
+- **Contact Forms**: Contact forms with validation using React Hook Form
+- **Services Pages**: Comprehensive information about real estate services
+- **About Page**: Company information and team profiles
+- **SEO Optimized**: Built-in SEO optimization with Next.js
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Forms**: React Hook Form with Zod validation
+- **Icons**: Lucide React
+- **Deployment**: Netlify
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/CorporateGuuu/JayRealestate.git
+cd JayRealestate
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create environment file:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint for code linting
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+jay-real-estate/
+├── src/
+│   ├── app/                 # Next.js App Router pages
+│   │   ├── about/          # About page
+│   │   ├── contact/        # Contact page
+│   │   ├── properties/     # Properties listing page
+│   │   ├── services/       # Services page
+│   │   ├── globals.css     # Global styles
+│   │   ├── layout.tsx      # Root layout
+│   │   └── page.tsx        # Homepage
+│   └── components/         # React components
+│       ├── Header.tsx      # Navigation header
+│       ├── Footer.tsx      # Site footer
+│       ├── Hero.tsx        # Hero section
+│       └── [Other Components]
+├── public/                 # Static assets
+├── netlify.toml           # Netlify configuration
+├── next.config.ts         # Next.js configuration
+└── package.json           # Dependencies and scripts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Netlify (Recommended)
+
+1. Connect your GitHub repository to Netlify
+2. Set build command: `npm run build`
+3. Set publish directory: `.next`
+4. Deploy!
+
+The `netlify.toml` file is already configured for optimal deployment.
+
+## 📱 Pages
+
+- **Homepage** (`/`) - Hero section, featured properties, services overview
+- **Properties** (`/properties`) - Property listings with search and filters
+- **About** (`/about`) - Company story, team, and values
+- **Services** (`/services`) - Detailed service offerings
+- **Contact** (`/contact`) - Contact forms and company information
+
+## 📞 Support
+
+For support or questions, please create an issue on GitHub.
+
+---
+
+Built with ❤️ for JAY Real Estate

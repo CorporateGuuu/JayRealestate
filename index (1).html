@@ -1,0 +1,387 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JAY Real Estate - Find your dream home with our exclusive property listings.">
+  <title>JAY Real Estate</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function Header() {
+      return (
+        <header className="bg-gray-800 text-white p-4 sticky top-0 z-20 shadow-lg">
+          <nav className="container mx-auto flex justify-between items-center">
+            <div className="text-2xl font-bold tracking-tight">JAY Real Estate</div>
+            <ul className="flex space-x-8 text-sm font-medium">
+              <li><a href="#home" className="hover:text-blue-400 transition-colors">Home</a></li>
+              <li><a href="#properties" className="hover:text-blue-400 transition-colors">Properties</a></li>
+              <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
+              <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
+            </ul>
+          </nav>
+        </header>
+      );
+    }
+
+    function Hero() {
+      return (
+        <section id="home" className="bg-gray-100 py-24 bg-cover bg-center" style={{ backgroundImage: 'url(https://via.placeholder.com/1600x600?text=Hero+Image)' }}>
+          <div className="container mx-auto text-center">
+            <h1 className="text-5xl font-extrabold mb-4 text-gray-900">Find Your Dream Home</h1>
+            <p className="text-xl mb-8 text-gray-700">Discover exclusive properties tailored to your lifestyle.</p>
+            <a href="#properties" className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors text-lg font-semibold">Explore Properties</a>
+          </div>
+        </section>
+      );
+    }
+
+    function PropertyCard({ property, onViewDetails }) {
+      return (
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <img src={property.image} alt={property.title} className="w-full h-48 object-cover" />
+          <div className="p-5">
+            <h3 className="text-xl font-semibold text-gray-900">{property.title}</h3>
+            <p className="text-gray-600">{property.location}</p>
+            <p className="text-blue-500 font-bold mt-1">{property.price}</p>
+            <button
+              onClick={() => onViewDetails(property)}
+              className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors w-full"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    function PropertyModal({ property, onClose }) {
+      if (!property) return null;
+      return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-lg w-full mx-4">
+            <h2 className="text-2xl font-bold mb-4">{property.title}</h2>
+            <img src={property.image} alt={property.title} className="w-full h-64 object-cover rounded mb-4" />
+            <p className="text-gray-700 mb-2"><strong>Location:</strong> {property.location}</p>
+            <p className="text-gray-700 mb-2"><strong>Price:</strong> {property.price}</p>
+            <p className="text-gray-700 mb-2"><strong>Type:</strong> {property.type}</p>
+            <p className="text-gray-700 mb-4"><strong>Description:</strong> {property.description}</p>
+            <button
+              onClick={onClose}
+              className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors w-full"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    function Properties() {
+      const [searchTerm, setSearchTerm] = React.useState('');
+      const [propertyType, setPropertyType] = React.useState('');
+      const [priceRange, setPriceRange] = React.useState('');
+      const [selectedProperty, setSelectedProperty] = React.useState(null);
+      const [properties, setProperties] = React.useState([]);
+      const [isLoading, setIsLoading] = React.useState(true);
+      const [error, setError] = React.useState(null);
+
+      React.useEffect(() => {
+        // Fetch properties from a mock API (replace with your CMS or database API)
+        fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to fetch properties');
+            return response.json();
+          })
+          .then(data => {
+            // Map mock data to property format
+            const mappedProperties = data.map((item, index) => ({
+              title: `Property ${item.id}`,
+              price: `$${300000 + index * 250000}`,
+              location: ['Miami, FL', 'New York, NY', 'Santa Monica, CA', 'Austin, TX', 'Chicago, IL'][index % 5],
+              type: ['Villa', 'Apartment', 'Condo', 'House', 'Apartment'][index % 5],
+              image: `https://via.placeholder.com/400x300?text=Property+${item.id}`,
+              description: item.body || 'A beautiful property with modern amenities.'
+            }));
+            setProperties(mappedProperties);
+            setIsLoading(false);
+          })
+          .catch(err => {
+            setError(err.message);
+            setIsLoading(false);
+          });
+      }, []);
+
+      const filteredProperties = properties.filter(property => {
+        const matchesSearch = property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                             property.price.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesType = !propertyType || property.type === propertyType;
+        const priceNum = parseInt(property.price.replace(/[^0-9]/g, ''));
+        const matchesPrice = !priceRange ||
+                            (priceRange === 'low' && priceNum < 500000) ||
+                            (priceRange === 'mid' && priceNum >= 500000 && priceNum <= 1000000) ||
+                            (priceRange === 'high' && priceNum > 1000000);
+        return matchesSearch && matchesType && matchesPrice;
+      });
+
+      return (
+        <section id="properties" className="py-20 bg-gray-50">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Our Properties</h2>
+            <div className="max-w-3xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <input
+                type="text"
+                placeholder="Search by location or price..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <select
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">All Types</option>
+                <option value="Villa">Villa</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Condo">Condo</option>
+                <option value="House">House</option>
+              </select>
+              <select
+                value={priceRange}
+                onChange={(e) => setPriceRange(e.target.value)}
+                className="p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">All Prices</option>
+                <option value="low">Under $500K</option>
+                <option value="mid">$500K - $1M</option>
+                <option value="high">Over $1M</option>
+              </select>
+            </div>
+            {isLoading ? (
+              <div className="text-center">
+                <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent"></div>
+                <p className="mt-2 text-gray-600">Loading properties...</p>
+              </div>
+            ) : error ? (
+              <p className="text-center text-red-500">Error: {error}</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {filteredProperties.length > 0 ? (
+                  filteredProperties.map((property, index) => (
+                    <PropertyCard key={index} property={property} onViewDetails={setSelectedProperty} />
+                  ))
+                ) : (
+                  <p className="text-center col-span-3 text-gray-600">No properties match your filters.</p>
+                )}
+              </div>
+            )}
+            <PropertyModal property={selectedProperty} onClose={() => setSelectedProperty(null)} />
+          </div>
+        </section>
+      );
+    }
+
+    function About() {
+      return (
+        <section id="about" className="py-20 bg-white">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">About JAY Real Estate</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              At JAY Real Estate, we are committed to connecting you with your ideal home. Our experienced team offers personalized service and expert guidance to make your property journey seamless.
+            </p>
+          </div>
+        </section>
+      );
+    }
+
+    function Contact() {
+      const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
+      const [errors, setErrors] = React.useState({});
+      const [status, setStatus] = React.useState(null);
+
+      const validateForm = () => {
+        const newErrors = {};
+        if (!formData.name.trim()) newErrors.name = 'Name is required';
+        if (!formData.email.trim()) newErrors.email = 'Email is required';
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email format';
+        if (!formData.message.trim()) newErrors.message = 'Message is required';
+        return newErrors;
+      };
+
+      const handleSubmit = async () => {
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+          setErrors(validationErrors);
+          return;
+        }
+
+        setStatus('submitting');
+        try {
+          // Replace with your Formspree endpoint
+          const response = await fetch('https://formspree.io/f/your-form-id', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              message: formData.message,
+              _replyto: formData.email
+            })
+          });
+
+          if (response.ok) {
+            setStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setErrors({});
+            setTimeout(() => setStatus(null), 3000); // Clear status after 3s
+          } else {
+            throw new Error('Failed to submit form');
+          }
+        } catch (error) {
+          setStatus('error');
+          setTimeout(() => setStatus(null), 3000);
+        }
+      };
+
+      const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData({ ...formData, [id]: value });
+        if (errors[id]) setErrors({ ...errors, [id]: '' });
+      };
+
+      return (
+        <section id="contact" className="py-20 bg-gray-50">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Get in Touch</h2>
+            <div className="max-w-lg mx-auto">
+              <div className="mb-6">
+                <label className="block text-gray-700 mb-2 font-medium" htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${errors.name ? 'border-red-500' : 'focus:ring-blue-500'}`}
+                  placeholder="Your Name"
+                />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+              </div>
+              <div className="mb-6">
+                <label className="block text-gray-700 mb-2 font-medium" htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${errors.email ? 'border-red-500' : 'focus:ring-blue-500'}`}
+                  placeholder="Your Email"
+                />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              </div>
+              <div className="mb-6">
+                <label className="block text-gray-700 mb-2 font-medium" htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className={`w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${errors.message ? 'border-red-500' : 'focus:ring-blue-500'}`}
+                  rows="5"
+                  placeholder="Your Message"
+                ></textarea>
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+              </div>
+              <button
+                onClick={handleSubmit}
+                disabled={status === 'submitting'}
+                className={`bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors w-full font-semibold ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                {status === 'submitting' ? 'Submitting...' : 'Send Message'}
+              </button>
+              {status === 'success' && (
+                <p className="text-green-500 text-center mt-4">Form submitted successfully!</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-500 text-center mt-4">Failed to submit form. Please try again.</p>
+              )}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="bg-gray-800 text-white py-8">
+          <div className="container mx-auto text-center">
+            <p className="text-sm">© 2025 JAY Real Estate. All rights reserved.</p>
+          </div>
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <Header />
+          <Hero />
+          <Properties />
+          <About />
+          <Contact />
+          <Footer />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
