@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import ChatBot from "@/components/ChatBot";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppWidget />
         <ChatBot />
+        <PerformanceMonitor />
       </body>
     </html>
   );

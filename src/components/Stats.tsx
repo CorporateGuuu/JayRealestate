@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { TrendingUp, Users, Home, Award } from 'lucide-react';
+import { TrendingUp, Users, Home } from 'lucide-react';
 
 const Stats = () => {
   const ref = useRef(null);

@@ -72,7 +72,7 @@ const Testimonials = () => {
   useEffect(() => {
     const timer = setInterval(nextTestimonial, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [nextTestimonial]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (

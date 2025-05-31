@@ -16,9 +16,33 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    // Performance optimizations
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  // Performance and build optimizations
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: false,
   // Optimize for Netlify deployment
   trailingSlash: true,
+  // Bundle analyzer for production builds
+  ...(process.env.ANALYZE === 'true' && {
+    webpack: (config: any) => {
+      config.plugins.push(
+        new (require('@next/bundle-analyzer')({
+          enabled: true,
+        }))()
+      );
+      return config;
+    },
+  }),
+  // Experimental features for better performance
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
 };
 
 export default nextConfig;

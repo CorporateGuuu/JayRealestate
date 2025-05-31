@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
+// import { MapSkeleton } from './LazyWrapper';
 
 interface InteractiveMapProps {
   className?: string;
@@ -9,6 +10,7 @@ interface InteractiveMapProps {
 
 const InteractiveMap: React.FC<InteractiveMapProps> = ({ className = '' }) => {
   const [mapLoaded, setMapLoaded] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
   const [mapError, setMapError] = useState(false);
 
   // Office location coordinates (Sultan Business Centre, Oud Metha, Dubai)
