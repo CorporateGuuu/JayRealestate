@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--version"
 
 [[redirects]]
   from = "/*"
@@ -11,7 +12,7 @@
   status = 200
 
 [context.production.environment]
-  NEXT_SERVERLESS = "true"
+  NEXT_TELEMETRY_DISABLED = "1"
 
 # Headers for security and performance
 [[headers]]
