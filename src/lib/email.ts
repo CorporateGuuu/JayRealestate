@@ -1,17 +1,32 @@
 import { Resend } from 'resend';
 import { ContactFormData, PropertyInquiryData } from './validation';
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
+// Email configuration
 const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@jayrealestate.ae';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@jayrealestate.ae';
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+
+// Create Resend client with optional API key
+const createResendClient = () => {
+  if (!RESEND_API_KEY) {
+    console.warn('Resend API key not found. Email service will be unavailable.');
+    return null;
+  }
+  return new Resend(RESEND_API_KEY);
+};
+
+const resend = createResendClient();
 
 // Email Templates
 export class EmailService {
   
   // Send contact form notification to admin
   static async sendContactFormNotification(data: ContactFormData): Promise<boolean> {
+    if (!resend) {
+      console.warn('Email service not available - missing Resend API key');
+      return false;
+    }
+
     try {
       const subjectMap = {
         buying: 'Property Buying Inquiry',
@@ -107,6 +122,11 @@ export class EmailService {
 
   // Send auto-response to client
   static async sendContactFormAutoResponse(data: ContactFormData): Promise<boolean> {
+    if (!resend) {
+      console.warn('Email service not available - missing Resend API key');
+      return false;
+    }
+
     try {
       const html = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -179,6 +199,11 @@ export class EmailService {
 
   // Send property inquiry notification
   static async sendPropertyInquiryNotification(data: PropertyInquiryData): Promise<boolean> {
+    if (!resend) {
+      console.warn('Email service not available - missing Resend API key');
+      return false;
+    }
+
     try {
       const inquiryTypeMap = {
         viewing: 'Property Viewing Request',
