@@ -38,6 +38,11 @@ export async function POST(request: NextRequest) {
 
     // Store WhatsApp interaction in database
     try {
+      if (!supabase) {
+        console.warn('Database not available - skipping WhatsApp analytics tracking');
+        return NextResponse.json({ success: true, message: 'Interaction tracked (database unavailable)' });
+      }
+
       const { error } = await supabase
         .from('whatsapp_interactions')
         .insert([{

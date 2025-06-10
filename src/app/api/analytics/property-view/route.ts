@@ -39,6 +39,11 @@ export async function POST(request: NextRequest) {
 
     // Store property view in database
     try {
+      if (!supabase) {
+        console.warn('Database not available - skipping property view tracking');
+        return NextResponse.json({ success: true, message: 'View tracked (database unavailable)' });
+      }
+
       const { error } = await supabase
         .from('property_views')
         .insert([{

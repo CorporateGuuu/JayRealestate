@@ -60,9 +60,13 @@ export class AdminAuth {
 
   // Create admin user
   static async createAdminUser(email: string, password: string, name: string, role: 'admin' | 'manager' | 'agent' = 'admin'): Promise<AdminUser> {
+    if (!supabase) {
+      throw new Error('Database not available - missing environment variables');
+    }
+
     try {
       const hashedPassword = await this.hashPassword(password);
-      
+
       const { data, error } = await supabase
         .from('admin_users')
         .insert([{
@@ -96,6 +100,11 @@ export class AdminAuth {
 
   // Authenticate admin user
   static async authenticateAdmin(email: string, password: string): Promise<{ user: AdminUser; token: string } | null> {
+    if (!supabase) {
+      console.warn('Database not available - missing environment variables');
+      return null;
+    }
+
     try {
       const { data, error } = await supabase
         .from('admin_users')
@@ -131,6 +140,11 @@ export class AdminAuth {
 
   // Get admin user by ID
   static async getAdminById(userId: string): Promise<AdminUser | null> {
+    if (!supabase) {
+      console.warn('Database not available - missing environment variables');
+      return null;
+    }
+
     try {
       const { data, error } = await supabase
         .from('admin_users')
@@ -157,6 +171,11 @@ export class AdminAuth {
 
   // Update admin user
   static async updateAdminUser(userId: string, updates: Partial<Pick<AdminUser, 'name' | 'email' | 'role'>>): Promise<AdminUser | null> {
+    if (!supabase) {
+      console.warn('Database not available - missing environment variables');
+      return null;
+    }
+
     try {
       const { data, error } = await supabase
         .from('admin_users')
@@ -187,6 +206,10 @@ export class AdminAuth {
 
   // Change password
   static async changePassword(userId: string, currentPassword: string, newPassword: string): Promise<boolean> {
+    if (!supabase) {
+      throw new Error('Database not available - missing environment variables');
+    }
+
     try {
       // First verify current password
       const { data, error } = await supabase
@@ -225,6 +248,11 @@ export class AdminAuth {
 
   // List all admin users
   static async listAdminUsers(): Promise<AdminUser[]> {
+    if (!supabase) {
+      console.warn('Database not available - missing environment variables');
+      return [];
+    }
+
     try {
       const { data, error } = await supabase
         .from('admin_users')
@@ -250,6 +278,10 @@ export class AdminAuth {
 
   // Delete admin user
   static async deleteAdminUser(userId: string): Promise<boolean> {
+    if (!supabase) {
+      throw new Error('Database not available - missing environment variables');
+    }
+
     try {
       const { error } = await supabase
         .from('admin_users')

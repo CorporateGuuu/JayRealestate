@@ -69,6 +69,18 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Check if database is available
+    if (!supabase) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Database not available - missing environment variables',
+          code: 'DATABASE_UNAVAILABLE'
+        },
+        { status: 503 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const period = searchParams.get('period') || '30'; // days
     const startDate = new Date();
