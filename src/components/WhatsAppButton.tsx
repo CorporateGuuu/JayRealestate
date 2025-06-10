@@ -37,16 +37,17 @@ const WhatsAppButton = ({
   const [showQuickActions, setShowQuickActions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Responsive size classes for proper mobile/desktop sizing
   const sizeClasses = {
-    sm: 'w-12 h-12 sm:w-12 sm:h-12',
+    sm: 'w-10 h-10 sm:w-12 sm:h-12',
     md: 'w-12 h-12 sm:w-14 sm:h-14',
     lg: 'w-14 h-14 sm:w-16 sm:h-16'
   };
 
   const iconSizes = {
-    sm: 'w-5 h-5',
-    md: 'w-6 h-6',
-    lg: 'w-7 h-7'
+    sm: 'w-4 h-4 sm:w-5 sm:h-5',
+    md: 'w-5 h-5 sm:w-6 sm:h-6',
+    lg: 'w-6 h-6 sm:w-7 sm:h-7'
   };
 
   const handleWhatsAppClick = async (messageType?: 'general' | 'property' | 'viewing' | 'investment' | 'valuation' | 'offplan' | 'rent' | 'sell') => {
