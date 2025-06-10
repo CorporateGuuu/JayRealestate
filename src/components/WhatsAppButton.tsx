@@ -38,9 +38,9 @@ const WhatsAppButton = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const sizeClasses = {
-    sm: 'w-12 h-12',
-    md: 'w-14 h-14',
-    lg: 'w-16 h-16'
+    sm: 'w-12 h-12 sm:w-12 sm:h-12',
+    md: 'w-12 h-12 sm:w-14 sm:h-14',
+    lg: 'w-14 h-14 sm:w-16 sm:h-16'
   };
 
   const iconSizes = {
@@ -160,10 +160,10 @@ const WhatsAppButton = ({
     );
   }
 
-  // Floating variant (default)
+  // Floating variant (default) - Bottom-right positioning with responsive spacing
   return (
     <motion.div
-      className={`fixed bottom-6 right-6 z-[9999] ${className}`}
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] ${className}`}
       variants={widgetBounce}
       initial="initial"
       animate="animate"
@@ -176,7 +176,7 @@ const WhatsAppButton = ({
             initial="closed"
             animate="open"
             exit="closed"
-            className="absolute bottom-20 right-0 bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 min-w-64"
+            className="absolute bottom-16 sm:bottom-20 right-0 bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 min-w-64 max-w-[calc(100vw-2rem)] sm:max-w-80"
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-gray-900">Quick Actions</h3>

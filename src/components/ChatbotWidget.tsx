@@ -162,14 +162,14 @@ Is there anything else I can help you with?`,
   if (!isOpen) {
     return (
       <motion.div
-        className={`fixed bottom-6 left-6 z-[9998] ${className}`}
+        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9998] ${className}`}
         variants={widgetBounce}
         initial="initial"
         animate="animate"
       >
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center relative overflow-hidden"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center relative overflow-hidden"
           variants={buttonAnimations}
           initial="rest"
           whileHover="hover"
@@ -188,14 +188,14 @@ Is there anything else I can help you with?`,
 
         {/* Enhanced Pulse animation */}
         <motion.div
-          className="absolute inset-0 w-14 h-14 bg-blue-400 rounded-full -z-10"
+          className="absolute inset-0 w-12 h-12 sm:w-14 sm:h-14 bg-blue-400 rounded-full -z-10"
           variants={widgetPulse}
           animate="animate"
         />
 
         {/* Secondary pulse ring */}
         <motion.div
-          className="absolute inset-0 w-14 h-14 bg-blue-300 rounded-full -z-20"
+          className="absolute inset-0 w-12 h-12 sm:w-14 sm:h-14 bg-blue-300 rounded-full -z-20"
           animate={{
             scale: [1, 1.4, 1],
             opacity: [0.5, 0, 0.5],
@@ -213,7 +213,7 @@ Is there anything else I can help you with?`,
 
   return (
     <motion.div
-      className={`fixed bottom-6 left-6 z-[9998] ${className}`}
+      className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9998] ${className}`}
       variants={widgetBounce}
       initial="initial"
       animate="animate"
@@ -228,7 +228,7 @@ Is there anything else I can help you with?`,
         }}
         exit={{ opacity: 0, scale: 0.8, y: 20 }}
         transition={{ duration: 0.3, ease: easings.easeOut }}
-        className="bg-white rounded-2xl shadow-2xl border border-gray-200 w-80 overflow-hidden"
+        className="bg-white rounded-2xl shadow-2xl border border-gray-200 w-80 max-w-[calc(100vw-2rem)] sm:max-w-80 overflow-hidden"
       >
         {/* Header */}
         <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
