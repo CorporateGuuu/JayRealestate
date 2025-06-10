@@ -1,4 +1,4 @@
-import { Variants, Transition } from 'framer-motion';
+import { Variants } from 'framer-motion';
 
 // Animation configuration respecting user preferences
 export const getAnimationConfig = () => {
@@ -484,7 +484,7 @@ export const filterTagAnimation: Variants = {
   }
 };
 
-export default {
+const animations = {
   pageTransitions,
   scrollAnimations,
   staggerContainer,
@@ -513,3 +513,5 @@ export default {
   easings,
   getAnimationConfig
 };
+
+export default animations;

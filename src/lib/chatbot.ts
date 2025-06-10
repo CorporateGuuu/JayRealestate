@@ -167,7 +167,7 @@ I'm here to help you with all your Dubai real estate needs. How can I assist you
   }
 
   // Generate response based on intent
-  private static generateResponse(intent: string, userMessage: string, session: ChatSession): ChatMessage {
+  private static generateResponse(intent: string, _userMessage: string, _session: ChatSession): ChatMessage {
     const responses = this.getResponseTemplates();
     const response = responses[intent as keyof typeof responses] || responses.general;
     
@@ -180,7 +180,7 @@ I'm here to help you with all your Dubai real estate needs. How can I assist you
       metadata: {
         intent,
         confidence: 0.8,
-        requiresHuman: (response as any).requiresHuman || false
+        requiresHuman: (response as { requiresHuman?: boolean }).requiresHuman || false
       }
     };
   }

@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { ContactFormData, PropertyInquiryData, NewsletterData, CallbackData } from './validation';
+import { ContactFormData, PropertyInquiryData } from './validation';
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
