@@ -66,10 +66,10 @@ const CTA = () => {
                   Speak with our experts
                 </p>
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+971552089241"
                   className="text-white font-semibold hover:text-yellow-300 transition-colors duration-200"
                 >
-                  (555) 123-4567
+                  +971 55 208 9241
                 </a>
               </div>
 
@@ -83,10 +83,10 @@ const CTA = () => {
                   Get detailed information
                 </p>
                 <a
-                  href="mailto:info@jayrealestate.com"
+                  href="mailto:info@jayrealestate.ae"
                   className="text-white font-semibold hover:text-yellow-300 transition-colors duration-200"
                 >
-                  info@jayrealestate.com
+                  info@jayrealestate.ae
                 </a>
               </div>
 

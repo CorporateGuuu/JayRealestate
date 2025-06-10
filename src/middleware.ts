@@ -1,6 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Handle common redirects
+  if (pathname === '/home') {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
+  if (pathname === '/property' || pathname === '/listings') {
+    return NextResponse.redirect(new URL('/properties', request.url));
+  }
+
+  if (pathname === '/about-us') {
+    return NextResponse.redirect(new URL('/about', request.url));
+  }
+
+  if (pathname === '/contact-us') {
+    return NextResponse.redirect(new URL('/contact', request.url));
+  }
+
   // Create response
   const response = NextResponse.next();
 

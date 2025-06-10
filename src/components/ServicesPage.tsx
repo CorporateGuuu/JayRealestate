@@ -201,6 +201,7 @@ const ServicesPage = () => {
             {mainServices.map((service, index) => (
               <motion.div
                 key={service.id}
+                id={service.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}

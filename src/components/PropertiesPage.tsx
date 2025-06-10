@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -24,11 +25,43 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import AdvancedSearch from '@/components/AdvancedSearch';
 
 const PropertiesPage = () => {
+  const searchParams = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [likedProperties, setLikedProperties] = useState<number[]>([]);
   const [filteredProperties, setFilteredProperties] = useState<Property[]>(properties);
   const [searchFilters, setSearchFilters] = useState<any>({});
   const [sortBy, setSortBy] = useState('featured');
+
+  // Handle URL parameters on component mount
+  useEffect(() => {
+    const type = searchParams.get('type');
+    const category = searchParams.get('category');
+
+    if (type || category) {
+      let filtered = properties;
+
+      // Filter by type (buy, rent, off-plan)
+      if (type === 'off-plan') {
+        // All properties are off-plan, so no additional filtering needed
+        filtered = properties;
+      } else if (type === 'buy' || type === 'rent') {
+        // For now, all properties are off-plan, but we can set the filter context
+        setSearchFilters((prev: any) => ({ ...prev, type }));
+      }
+
+      // Filter by category (apartment, villa, townhouse, etc.)
+      if (category) {
+        filtered = filtered.filter(property =>
+          property.propertyTypes.some(propType =>
+            propType.toLowerCase().includes(category.toLowerCase())
+          )
+        );
+        setSearchFilters((prev: any) => ({ ...prev, category }));
+      }
+
+      setFilteredProperties(filtered);
+    }
+  }, [searchParams]);
 
   // Search suggestions logic
   const getSearchSuggestions = (query: string) => {
