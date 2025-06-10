@@ -16,7 +16,7 @@ import {
 import ChatbotService, { ChatSession, ChatMessage } from '@/lib/chatbot';
 import WhatsAppService from '@/lib/whatsapp';
 import {
-  widgetBounce,
+  chatbotWidgetAnimation,
   widgetPulse,
   buttonAnimations,
   dropdownReveal,
@@ -163,7 +163,7 @@ Is there anything else I can help you with?`,
     return (
       <motion.div
         className={`widget-bottom-left ${className}`}
-        variants={widgetBounce}
+        variants={chatbotWidgetAnimation}
         initial="initial"
         animate="animate"
       >
@@ -214,7 +214,7 @@ Is there anything else I can help you with?`,
   return (
     <motion.div
       className={`widget-bottom-left ${className}`}
-      variants={widgetBounce}
+      variants={chatbotWidgetAnimation}
       initial="initial"
       animate="animate"
     >

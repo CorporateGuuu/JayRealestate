@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, MapPin, Home, Star, TrendingUp, Building, Users, ArrowRight } from 'lucide-react';
+import { Search, MapPin, Home, Star, TrendingUp, Building, Users, ArrowRight, Play } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import {
   floatingAnimation,
   staggerContainer,
   staggerItem,
+  staggerItemFast,
   formFieldFocus,
   easings
 } from '@/lib/animations';
@@ -75,7 +76,8 @@ const Hero = () => {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
-        <div className="absolute inset-0 hero-gradient"></div>
+        {/* Minimal Gradient Overlay - NO blue overlay, maintaining text readability */}
+        <div className="absolute inset-0 hero-gradient-minimal"></div>
       </motion.div>
 
       {/* Floating Elements */}
@@ -122,13 +124,13 @@ const Hero = () => {
               </motion.span>
               <motion.span
                 variants={staggerItem}
-                className="block text-yellow-400 drop-shadow-lg"
+                className="block text-gradient drop-shadow-lg"
               >
                 Dream Home
               </motion.span>
               <motion.span
                 variants={staggerItem}
-                className="block text-2xl md:text-3xl lg:text-4xl font-medium text-blue-200 mt-2"
+                className="block text-2xl md:text-3xl lg:text-4xl font-medium text-white/90 mt-2"
               >
                 in Dubai
               </motion.span>

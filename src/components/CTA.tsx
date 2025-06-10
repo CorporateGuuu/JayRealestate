@@ -3,10 +3,15 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Phone, Mail, MessageCircle } from 'lucide-react';
+import {
+  staggerContainer,
+  staggerItem,
+  easings
+} from '@/lib/animations';
 
 const CTA = () => {
   return (
-    <section className="section-padding bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 relative overflow-hidden">
+    <section className="section-spacing jay-gradient relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -17,36 +22,45 @@ const CTA = () => {
       <div className="container-custom relative z-10">
         <div className="text-center text-white">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Ready to Find Your Dream Home?
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
-              Let our expert team guide you through every step of your real estate journey. 
+            <motion.h2
+              variants={staggerItem}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            >
+              Ready to Find Your Dream Home in Dubai?
+            </motion.h2>
+            <motion.p
+              variants={staggerItem}
+              className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed"
+            >
+              Let our expert team guide you through Dubai's premium off-plan developments.
               From finding the perfect property to closing the deal, we're here to help.
-            </p>
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div className="btn-group justify-center mb-12">
+            <motion.div
+              variants={staggerItem}
+              className="btn-group justify-center mb-12"
+            >
               <Link
                 href="/contact"
-                className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
+                className="bg-white text-jay-primary hover:bg-gray-100 font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center animate-optimized"
               >
                 Contact Us Today
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
                 href="/properties"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-jay-primary font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center animate-optimized"
               >
                 Browse Properties
               </Link>
-            </div>
+            </motion.div>
 
             {/* Contact Options */}
             <motion.div

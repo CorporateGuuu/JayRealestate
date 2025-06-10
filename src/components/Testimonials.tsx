@@ -4,6 +4,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import Image from 'next/image';
+import {
+  staggerContainer,
+  staggerItem,
+  easings
+} from '@/lib/animations';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -86,21 +91,27 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-spacing bg-white">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            What Our Clients Say
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it - hear from our satisfied Dubai clients about their experience
-          </p>
+          <motion.h2
+            variants={staggerItem}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+          >
+            What Our Dubai Clients Say
+          </motion.h2>
+          <motion.p
+            variants={staggerItem}
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
+          >
+            Don't just take our word for it - hear from our satisfied Dubai clients about their real estate experience
+          </motion.p>
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
@@ -118,7 +129,7 @@ const Testimonials = () => {
                 <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
                   {/* Quote Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 jay-gradient rounded-full flex items-center justify-center">
                       <Quote className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -136,7 +147,7 @@ const Testimonials = () => {
                     </blockquote>
 
                     {/* Property Info */}
-                    <div className="text-sm text-blue-600 font-semibold mb-4">
+                    <div className="text-sm text-jay-primary font-semibold mb-4">
                       {testimonials[currentIndex].property}
                     </div>
 
@@ -169,13 +180,13 @@ const Testimonials = () => {
           <div className="flex justify-center space-x-4 mt-8">
             <button
               onClick={prevTestimonial}
-              className="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:border-blue-600 hover:text-blue-600 transition-colors duration-200"
+              className="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:border-jay-primary hover:text-jay-primary transition-colors duration-200 animate-optimized"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:border-blue-600 hover:text-blue-600 transition-colors duration-200"
+              className="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:border-jay-primary hover:text-jay-primary transition-colors duration-200 animate-optimized"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -188,7 +199,7 @@ const Testimonials = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+                  index === currentIndex ? 'bg-jay-primary' : 'bg-gray-300'
                 }`}
               />
             ))}
@@ -204,16 +215,16 @@ const Testimonials = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
         >
           <div className="text-center">
-            <div className="text-4xl font-bold text-blue-600 mb-2">98%</div>
+            <div className="text-4xl font-bold text-jay-primary mb-2">98%</div>
             <div className="text-gray-600">Client Satisfaction Rate</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-blue-600 mb-2">4.9/5</div>
+            <div className="text-4xl font-bold text-jay-primary mb-2">4.9/5</div>
             <div className="text-gray-600">Average Rating</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-blue-600 mb-2">1000+</div>
-            <div className="text-gray-600">Happy Clients</div>
+            <div className="text-4xl font-bold text-jay-primary mb-2">1000+</div>
+            <div className="text-gray-600">Happy Dubai Clients</div>
           </div>
         </motion.div>
       </div>

@@ -52,7 +52,7 @@ const Footer = () => {
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-200"
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-jay-primary transition-colors duration-200 animate-optimized"
                 >
                   <social.icon className="w-4 h-4" />
                 </Link>

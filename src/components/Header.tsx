@@ -115,9 +115,9 @@ const Header = () => {
           <div className="hidden lg:flex items-center flex-shrink-0 ml-4 xl:ml-8">
             <Link
               href="/contact"
-              className="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 whitespace-nowrap"
+              className="jay-gradient text-white px-6 py-3 rounded-xl font-medium hover:bg-jay-primary-light transition-all duration-200 whitespace-nowrap animate-optimized"
             >
-              Book a evaluation
+              Contact Us
             </Link>
           </div>
 
@@ -148,7 +148,7 @@ const Header = () => {
                     <Link
                       href={item.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium py-2"
+                      className="flex items-center justify-between text-gray-700 hover:text-jay-primary transition-colors duration-200 font-medium py-2"
                     >
                       <span>{item.name}</span>
                       {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
@@ -160,7 +160,7 @@ const Header = () => {
                             key={dropdownItem.name}
                             href={dropdownItem.href}
                             onClick={() => setIsMenuOpen(false)}
-                            className="block text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1"
+                            className="block text-gray-600 hover:text-jay-primary transition-colors duration-200 py-1"
                           >
                             {dropdownItem.name}
                           </Link>
@@ -173,9 +173,9 @@ const Header = () => {
                   <Link
                     href="/contact"
                     onClick={() => setIsMenuOpen(false)}
-                    className="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 w-full text-center block"
+                    className="jay-gradient text-white px-6 py-3 rounded-xl font-medium hover:bg-jay-primary-light transition-all duration-200 w-full text-center block animate-optimized"
                   >
-                    Book a evaluation
+                    Contact Us
                   </Link>
                 </div>
               </nav>

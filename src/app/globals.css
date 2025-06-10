@@ -1,20 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
-  /* Updated primary colors to match JAY logo blue gradient */
-  --primary: #1e40af;
+
+  /* JAY Real Estate Primary Brand Colors - Exact Figma Compliance */
+  --jay-primary: #2563eb;
+  --jay-primary-light: #3b82f6;
+  --jay-primary-dark: #1d4ed8;
+  --jay-primary-darker: #1e40af;
+  --jay-gold: #d4af37;
+  --jay-gold-light: #f4d03f;
+  --jay-gold-dark: #b7950b;
+
+  /* Updated primary colors to match JAY branding */
+  --primary: #2563eb;
   --primary-light: #3b82f6;
   --primary-dark: #1d4ed8;
-  --primary-darker: #1e3a8a;
+  --primary-darker: #1e40af;
   --secondary: #f8fafc;
-  /* Updated accent colors for better harmony */
-  --accent: #f59e0b;
-  --accent-light: #fbbf24;
-  --accent-dark: #d97706;
-  /* Enhanced gray scale for better contrast */
+
+  /* Enhanced accent colors with JAY gold */
+  --accent: #d4af37;
+  --accent-light: #f4d03f;
+  --accent-dark: #b7950b;
+
+  /* Enhanced gray scale for better contrast and accessibility */
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -25,7 +37,8 @@
   --gray-700: #374151;
   --gray-800: #1f2937;
   --gray-900: #111827;
-  /* Additional blue shades for logo harmony */
+
+  /* JAY Blue shades for comprehensive design system */
   --blue-50: #eff6ff;
   --blue-100: #dbeafe;
   --blue-200: #bfdbfe;
@@ -36,6 +49,11 @@
   --blue-700: #1d4ed8;
   --blue-800: #1e40af;
   --blue-900: #1e3a8a;
+
+  /* Dark navy for premium feel */
+  --navy-900: #1a1f3a;
+  --navy-800: #2a2f4a;
+  --navy-700: #3a3f5a;
 }
 
 @theme inline {
@@ -68,30 +86,57 @@ body {
     text-wrap: balance;
   }
 
+  /* Enhanced container system with JAY Real Estate spacing standards */
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
   }
 
-  /* Enhanced responsive spacing system */
+  .container-wide {
+    @apply max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-16;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* JAY Real Estate Spacing Standards - Exact Requirements */
+  /* Desktop: 80px+ vertical spacing, Mobile: 60px+ vertical spacing */
   .section-spacing {
-    @apply py-16 md:py-20 lg:py-24;
+    @apply py-[60px] md:py-[80px] lg:py-[100px] xl:py-[120px];
   }
 
   .section-spacing-sm {
-    @apply py-12 md:py-16 lg:py-20;
+    @apply py-[40px] md:py-[60px] lg:py-[80px];
   }
 
   .section-spacing-lg {
-    @apply py-20 md:py-24 lg:py-32;
+    @apply py-[80px] md:py-[120px] lg:py-[140px] xl:py-[160px];
   }
 
-  /* Content spacing utilities */
+  /* Enhanced content spacing with 20-30% increased padding */
   .content-spacing {
-    @apply space-y-8 md:space-y-12 lg:space-y-16;
+    @apply space-y-[32px] md:space-y-[48px] lg:space-y-[64px];
   }
 
   .content-spacing-sm {
-    @apply space-y-6 md:space-y-8 lg:space-y-12;
+    @apply space-y-[24px] md:space-y-[32px] lg:space-y-[48px];
+  }
+
+  .content-spacing-lg {
+    @apply space-y-[48px] md:space-y-[64px] lg:space-y-[80px];
+  }
+
+  /* Enhanced padding system - 20-30% increased */
+  .content-padding {
+    @apply p-[32px] md:p-[48px] lg:p-[64px];
+  }
+
+  .content-padding-sm {
+    @apply p-[24px] md:p-[32px] lg:p-[48px];
+  }
+
+  .content-padding-lg {
+    @apply p-[48px] md:p-[64px] lg:p-[80px];
   }
 
   /* Widget positioning system */
@@ -103,17 +148,26 @@ body {
     @apply fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9998];
   }
 
-  /* Enhanced responsive grid system */
+  /* Enhanced responsive grid system with minimum 24px gaps */
   .grid-responsive {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] md:gap-[32px] lg:gap-[40px];
   }
 
   .grid-responsive-2 {
-    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16;
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-[32px] md:gap-[48px] lg:gap-[64px];
   }
 
   .grid-responsive-4 {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] md:gap-[32px];
+  }
+
+  /* Property grid with optimized spacing - minimum 24px gaps */
+  .property-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] md:gap-[32px] lg:gap-[40px];
+  }
+
+  .property-grid-large {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[48px] lg:gap-[64px];
   }
 
   /* Touch target optimization for mobile */
@@ -165,41 +219,53 @@ body {
     @apply pb-20 sm:pb-24;
   }
 
-  /* Enhanced button styles with better spacing and mobile optimization */
+  /* Enhanced button styles with JAY branding and 60fps animations */
   .btn-primary {
-    background: var(--primary);
-    @apply text-white font-semibold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-    min-height: 44px; /* Minimum touch target for mobile */
+    background: var(--jay-primary);
+    @apply text-white font-semibold py-[16px] px-[40px] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl;
+    min-height: 48px; /* Enhanced touch target for mobile */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transform: translateZ(0); /* Hardware acceleration for 60fps */
+    will-change: transform, box-shadow;
   }
 
   .btn-primary:hover {
-    background: var(--primary-light);
+    background: var(--jay-primary-light);
+    transform: translateY(-2px) translateZ(0);
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 font-semibold py-4 px-10 rounded-xl border-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg;
-    color: var(--primary);
-    border-color: var(--primary);
-    min-height: 44px; /* Minimum touch target for mobile */
+    @apply bg-white hover:bg-gray-50 font-semibold py-[16px] px-[40px] rounded-xl border-2 transition-all duration-300 shadow-md hover:shadow-lg;
+    color: var(--jay-primary);
+    border-color: var(--jay-primary);
+    min-height: 48px; /* Enhanced touch target for mobile */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transform: translateZ(0); /* Hardware acceleration for 60fps */
+    will-change: transform, box-shadow;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px) translateZ(0);
   }
 
   .btn-accent {
-    background: var(--accent);
-    @apply text-white font-semibold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-    min-height: 44px; /* Minimum touch target for mobile */
+    background: var(--jay-gold);
+    @apply text-white font-semibold py-[16px] px-[40px] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl;
+    min-height: 48px; /* Enhanced touch target for mobile */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transform: translateZ(0); /* Hardware acceleration for 60fps */
+    will-change: transform, box-shadow;
   }
 
   .btn-accent:hover {
-    background: var(--accent-light);
+    background: var(--jay-gold-light);
+    transform: translateY(-2px) translateZ(0);
   }
 
   /* Button group spacing */
@@ -211,31 +277,38 @@ body {
     @apply flex-1 sm:flex-none;
   }
 
+  /* Enhanced card animations with 60fps performance */
   .card-hover {
-    @apply transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl;
+    @apply transition-all duration-300 shadow-lg hover:shadow-2xl;
+    transform: translateZ(0); /* Hardware acceleration */
+    will-change: transform, box-shadow;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px) translateZ(0);
   }
 
   .card-modern {
     @apply bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden;
+    transform: translateZ(0); /* Hardware acceleration */
   }
 
-  /* Enhanced section spacing for better visual hierarchy */
-  .section-padding {
-    @apply py-20 md:py-32;
-  }
-
-  .section-padding-sm {
-    @apply py-16 md:py-24;
-  }
-
-  /* Enhanced card spacing and padding */
+  /* Enhanced card spacing and padding with JAY standards */
   .card-enhanced {
-    @apply bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden p-8 md:p-10;
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden;
+    padding: 32px;
   }
 
-  /* Property grid with optimized spacing */
-  .property-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10;
+  @media (min-width: 768px) {
+    .card-enhanced {
+      padding: 48px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .card-enhanced {
+      padding: 64px;
+    }
   }
 
   /* Form field enhancements for mobile */
@@ -256,22 +329,123 @@ body {
     @apply grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6;
   }
 
+  /* JAY Real Estate Brand Gradients */
   .text-gradient {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg, var(--jay-primary) 0%, var(--jay-gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-bg {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--jay-primary) 0%, var(--jay-primary-dark) 100%);
   }
 
+  .jay-gradient {
+    background: linear-gradient(135deg, var(--jay-primary) 0%, var(--jay-primary-light) 100%);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--jay-gold) 0%, var(--jay-gold-light) 100%);
+  }
+
+  /* Hero gradient - NO blue overlay as per requirements */
   .hero-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
   }
 
-  .accent-gradient {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  .hero-gradient-minimal {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+  }
+
+  /* Premium navy gradient for luxury feel */
+  .navy-gradient {
+    background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+  }
+
+  /* JAY Real Estate Responsive Breakpoints */
+  /* Desktop: 1920px, 1440px, 1024px */
+  /* Mobile: 768px, 414px, 375px, 320px */
+
+  /* Enhanced responsive text sizing */
+  .text-responsive-sm {
+    @apply text-sm md:text-base lg:text-lg xl:text-xl;
+  }
+
+  .text-responsive {
+    @apply text-base md:text-lg lg:text-xl xl:text-2xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg md:text-xl lg:text-2xl xl:text-3xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-xl md:text-2xl lg:text-3xl xl:text-4xl;
+  }
+
+  /* Enhanced form fields with JAY branding */
+  .form-field {
+    @apply w-full px-[16px] py-[16px] border border-gray-300 rounded-lg focus:ring-2 transition-all duration-200;
+    min-height: 48px; /* Enhanced touch target */
+    border-color: var(--gray-300);
+  }
+
+  .form-field:focus {
+    @apply ring-2 border-transparent;
+    ring-color: var(--jay-primary);
+    border-color: var(--jay-primary);
+  }
+
+  .form-group {
+    @apply space-y-[16px] md:space-y-[24px];
+  }
+
+  .form-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-[16px] md:gap-[24px];
+  }
+
+  /* Performance optimizations for 60fps animations */
+  .animate-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .animate-optimized-opacity {
+    will-change: opacity;
+    backface-visibility: hidden;
+  }
+
+  /* JAY Real Estate specific utilities */
+  .jay-shadow {
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04);
+  }
+
+  .jay-shadow-lg {
+    box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15), 0 25px 25px -12px rgba(37, 99, 235, 0.08);
+  }
+}
+
+/* Smooth scrolling for all browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--jay-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

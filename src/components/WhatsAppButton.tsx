@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Phone, Clock, MapPin, Users } from 'lucide-react';
 import WhatsAppService from '@/lib/whatsapp';
 import {
-  widgetBounce,
+  whatsappWidgetAnimation,
   widgetPulse,
   buttonAnimations,
   dropdownReveal,
@@ -165,7 +165,7 @@ const WhatsAppButton = ({
   return (
     <motion.div
       className={`widget-bottom-right ${className}`}
-      variants={widgetBounce}
+      variants={whatsappWidgetAnimation}
       initial="initial"
       animate="animate"
     >

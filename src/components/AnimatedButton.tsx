@@ -70,19 +70,19 @@ const AnimatedButton = ({
 
   const getVariantStyles = () => {
     const variants = {
-      primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl',
-      secondary: 'bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 shadow-md hover:shadow-lg',
-      accent: 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg hover:shadow-xl',
-      ghost: 'bg-transparent hover:bg-blue-50 text-blue-600 border border-blue-200 hover:border-blue-300'
+      primary: 'jay-gradient hover:bg-jay-primary-light text-white jay-shadow hover:jay-shadow-lg',
+      secondary: 'bg-white hover:bg-gray-50 text-jay-primary border-2 border-jay-primary shadow-md hover:shadow-lg',
+      accent: 'gold-gradient hover:bg-jay-gold-light text-white jay-shadow hover:jay-shadow-lg',
+      ghost: 'bg-transparent hover:bg-jay-primary/10 text-jay-primary border border-jay-primary/20 hover:border-jay-primary/40'
     };
     return variants[variant];
   };
 
   const getSizeStyles = () => {
     const sizes = {
-      sm: 'px-4 py-2 text-sm min-h-[36px]',
-      md: 'px-6 py-3 text-base min-h-[44px]',
-      lg: 'px-8 py-4 text-lg min-h-[52px]'
+      sm: 'px-4 py-2 text-sm min-h-[40px]',
+      md: 'px-6 py-3 text-base min-h-[48px]',
+      lg: 'px-8 py-4 text-lg min-h-[56px]'
     };
     return sizes[size];
   };
@@ -105,10 +105,10 @@ const AnimatedButton = ({
       whileTap={!disabled && !loading ? "tap" : "rest"}
       animate={success ? "success" : error ? "error" : "rest"}
       className={`
-        relative overflow-hidden font-semibold rounded-xl transition-all duration-200 
-        flex items-center justify-center space-x-2 focus:outline-none focus:ring-4 focus:ring-blue-500/20
-        ${getVariantStyles()} 
-        ${getSizeStyles()} 
+        relative overflow-hidden font-semibold rounded-xl transition-all duration-200 animate-optimized
+        flex items-center justify-center space-x-2 focus:outline-none focus:ring-4 focus:ring-jay-primary/20
+        ${getVariantStyles()}
+        ${getSizeStyles()}
         ${getStatusColor()}
         ${disabled || loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         ${className}

@@ -4,93 +4,32 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Square, 
-  Heart, 
+import {
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Heart,
   Eye,
-  ArrowRight 
+  ArrowRight,
+  Building,
+  Calendar,
+  Star
 } from 'lucide-react';
+import { properties } from '@/data/dubaiProperties';
+import {
+  staggerContainer,
+  staggerItem,
+  staggerItemFast,
+  propertyCardHover,
+  easings
+} from '@/lib/animations';
 
 const FeaturedProperties = () => {
   const [likedProperties, setLikedProperties] = useState<number[]>([]);
 
-  const properties = [
-    {
-      id: 1,
-      title: 'Luxury Villa with Burj Khalifa View',
-      location: 'Downtown Dubai',
-      price: 8500000,
-      image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 5,
-      baths: 4,
-      sqft: 4200,
-      type: 'Villa',
-      featured: true,
-    },
-    {
-      id: 2,
-      title: 'Marina Penthouse',
-      location: 'Dubai Marina',
-      price: 12000000,
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 3,
-      baths: 3,
-      sqft: 2800,
-      type: 'Penthouse',
-      featured: true,
-    },
-    {
-      id: 3,
-      title: 'Palm Jumeirah Waterfront Villa',
-      location: 'Palm Jumeirah',
-      price: 15000000,
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 6,
-      baths: 5,
-      sqft: 5500,
-      type: 'Villa',
-      featured: true,
-    },
-    {
-      id: 4,
-      title: 'Business Bay Townhouse',
-      location: 'Business Bay',
-      price: 4200000,
-      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 4,
-      baths: 3,
-      sqft: 3200,
-      type: 'Townhouse',
-      featured: true,
-    },
-    {
-      id: 5,
-      title: 'DIFC Luxury Apartment',
-      location: 'Dubai International Financial Centre',
-      price: 2800000,
-      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 2,
-      baths: 2,
-      sqft: 1800,
-      type: 'Apartment',
-      featured: true,
-    },
-    {
-      id: 6,
-      title: 'Emirates Hills Mansion',
-      location: 'Emirates Hills',
-      price: 18000000,
-      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      beds: 5,
-      baths: 4,
-      sqft: 4800,
-      type: 'Mansion',
-      featured: true,
-    },
-  ];
+  // Get featured properties from Dubai properties data (no pricing)
+  const featuredProperties = properties.filter(property => property.featured).slice(0, 6);
 
   const toggleLike = (propertyId: number) => {
     setLikedProperties(prev => 
@@ -100,54 +39,65 @@ const FeaturedProperties = () => {
     );
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
+  // Helper function to get bedroom count from bedrooms array
+  const getBedroomCount = (bedrooms: string[]) => {
+    if (bedrooms.length === 0) return 'Studio';
+    return bedrooms[0];
   };
 
   return (
     <section className="section-spacing bg-white">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Featured Properties
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover our handpicked selection of premium properties in Dubai's most prestigious neighborhoods
-          </p>
+          <motion.h2
+            variants={staggerItem}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+          >
+            Featured Off-Plan Properties
+          </motion.h2>
+          <motion.p
+            variants={staggerItem}
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
+          >
+            Discover authentic Dubai off-plan developments from premier developers like Emaar, DAMAC, Sobha, Nakheel, and Dubai Properties
+          </motion.p>
         </motion.div>
 
-        <div className="grid-responsive">
-          {properties.map((property, index) => (
+        <motion.div
+          className="property-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {featuredProperties.map((property, index) => (
             <motion.div
               key={property.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover group"
+              variants={staggerItemFast}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover group animate-optimized"
+              whileHover="hover"
+              initial="rest"
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
                 <Image
                   src={property.image}
-                  alt={property.title}
+                  alt={`${property.projectName} - ${property.developer}`}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="gradient-bg text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    {property.type}
+                <div className="absolute top-4 left-4 flex flex-col gap-2">
+                  <span className="jay-gradient text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {property.propertyTypes[0]}
+                  </span>
+                  <span className="bg-white/90 text-gray-900 px-3 py-1 rounded-full text-xs font-medium">
+                    {property.developer}
                   </span>
                 </div>
                 <div className="absolute top-4 right-4 flex space-x-2">
@@ -163,7 +113,7 @@ const FeaturedProperties = () => {
                   </button>
                   <Link
                     href={`/properties/${property.id}`}
-                    className="w-10 h-10 touch-target bg-white/80 rounded-full flex items-center justify-center text-gray-700 hover:bg-blue-500 hover:text-white transition-colors duration-200"
+                    className="w-10 h-10 touch-target bg-white/80 rounded-full flex items-center justify-center text-gray-700 hover:bg-jay-primary hover:text-white transition-colors duration-200"
                   >
                     <Eye className="w-5 h-5" />
                   </Link>
@@ -171,41 +121,54 @@ const FeaturedProperties = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="content-padding-sm">
                 <div className="flex items-center text-gray-500 text-sm mb-2">
                   <MapPin className="w-4 h-4 mr-1" />
                   {property.location}
                 </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:opacity-80 transition-colors duration-200" style={{ '--hover-color': 'var(--primary)' } as React.CSSProperties}>
-                  {property.title}
+
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-jay-primary transition-colors duration-200">
+                  {property.projectName}
                 </h3>
-                
+
                 <div className="flex items-center justify-between text-gray-600 text-sm mb-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center">
                       <Bed className="w-4 h-4 mr-1" />
-                      {property.beds}
+                      {getBedroomCount(property.bedrooms)}
                     </div>
                     <div className="flex items-center">
-                      <Bath className="w-4 h-4 mr-1" />
-                      {property.baths}
+                      <Building className="w-4 h-4 mr-1" />
+                      {property.propertyTypes[0]}
                     </div>
                     <div className="flex items-center">
-                      <Square className="w-4 h-4 mr-1" />
-                      {property.sqft.toLocaleString()} sq ft
+                      <Calendar className="w-4 h-4 mr-1" />
+                      {property.completionDate}
                     </div>
                   </div>
                 </div>
-                
+
+                {/* Key Features */}
+                <div className="mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    {property.keyFeatures.slice(0, 2).map((feature, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-bold" style={{ color: 'var(--primary)' }}>
-                    {formatPrice(property.price)}
+                  <div className="text-sm text-gray-600">
+                    <span className="font-semibold text-jay-primary">Contact for Pricing</span>
                   </div>
                   <Link
                     href={`/properties/${property.id}`}
-                    className="flex items-center font-semibold transition-colors duration-200 hover:opacity-80"
-                    style={{ color: 'var(--primary)' }}
+                    className="flex items-center font-semibold text-jay-primary hover:text-jay-primary-dark transition-colors duration-200"
                   >
                     View Details
                     <ArrowRight className="w-4 h-4 ml-1" />
@@ -214,7 +177,7 @@ const FeaturedProperties = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All Button */}
         <motion.div
