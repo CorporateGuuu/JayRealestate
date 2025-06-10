@@ -206,26 +206,40 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Additional Stats */}
+        {/* Additional Stats - Enhanced Spacing and Centering */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
+          className="mt-20"
         >
-          <div className="text-center">
-            <div className="text-4xl font-bold text-jay-primary mb-2">98%</div>
-            <div className="text-gray-600">Client Satisfaction Rate</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-jay-primary mb-2">4.9/5</div>
-            <div className="text-gray-600">Average Rating</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-jay-primary mb-2">1000+</div>
-            <div className="text-gray-600">Happy Dubai Clients</div>
-          </div>
+          <motion.div
+            variants={staggerItem}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto"
+          >
+            <motion.div
+              variants={staggerItem}
+              className="text-center space-y-3"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-jay-primary mb-3">98%</div>
+              <div className="text-gray-600 text-lg">Client Satisfaction Rate</div>
+            </motion.div>
+            <motion.div
+              variants={staggerItem}
+              className="text-center space-y-3"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-jay-primary mb-3">4.9/5</div>
+              <div className="text-gray-600 text-lg">Average Rating</div>
+            </motion.div>
+            <motion.div
+              variants={staggerItem}
+              className="text-center space-y-3"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-jay-primary mb-3">1000+</div>
+              <div className="text-gray-600 text-lg">Happy Dubai Clients</div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
