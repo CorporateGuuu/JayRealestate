@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   MapPin,
   Phone,
@@ -12,34 +13,94 @@ import {
   CheckCircle,
   MessageCircle,
   Calendar,
-  User
+  User,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
+import { contactFormFrontendSchema, ContactFormFrontendData } from '@/lib/validation';
 import InteractiveMap from './InteractiveMap';
 
-interface ContactForm {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-  propertyType: string;
-  budget: string;
+interface SubmissionState {
+  isSubmitting: boolean;
+  isSubmitted: boolean;
+  error: string | null;
 }
 
 const ContactPage = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactForm>();
+  const [submissionState, setSubmissionState] = useState<SubmissionState>({
+    isSubmitting: false,
+    isSubmitted: false,
+    error: null
+  });
 
-  const onSubmit = async (data: ContactForm) => {
-    // Simulate form submission
-    console.log('Form submitted:', data);
-    setIsSubmitted(true);
-    reset();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<ContactFormFrontendData>({
+    resolver: zodResolver(contactFormFrontendSchema)
+  });
 
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+  const onSubmit = async (data: ContactFormFrontendData) => {
+    setSubmissionState({
+      isSubmitting: true,
+      isSubmitted: false,
+      error: null
+    });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          source: 'contact-page'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
+      // Success
+      setSubmissionState({
+        isSubmitting: false,
+        isSubmitted: true,
+        error: null
+      });
+
+      reset();
+
+      // Reset success message after 8 seconds
+      setTimeout(() => {
+        setSubmissionState(prev => ({
+          ...prev,
+          isSubmitted: false
+        }));
+      }, 8000);
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+
+      setSubmissionState({
+        isSubmitting: false,
+        isSubmitted: false,
+        error: error instanceof Error ? error.message : 'An unexpected error occurred'
+      });
+
+      // Clear error after 10 seconds
+      setTimeout(() => {
+        setSubmissionState(prev => ({
+          ...prev,
+          error: null
+        }));
+      }, 10000);
+    }
   };
 
   // Interactive contact functions
@@ -204,16 +265,41 @@ const ContactPage = () => {
                 </h2>
               </div>
 
-              {isSubmitted && (
+              {/* Success Message */}
+              {submissionState.isSubmitted && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center"
                 >
                   <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-                  <span className="text-green-800">
-                    Thank you! Your message has been sent successfully.
-                  </span>
+                  <div>
+                    <span className="text-green-800 font-semibold block">
+                      Thank you! Your message has been sent successfully.
+                    </span>
+                    <span className="text-green-700 text-sm">
+                      We'll contact you within 24 hours.
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {submissionState.error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center"
+                >
+                  <AlertCircle className="w-5 h-5 text-red-600 mr-2" />
+                  <div>
+                    <span className="text-red-800 font-semibold block">
+                      Failed to send message
+                    </span>
+                    <span className="text-red-700 text-sm">
+                      {submissionState.error}
+                    </span>
+                  </div>
                 </motion.div>
               )}
 
@@ -342,12 +428,31 @@ const ContactPage = () => {
                   )}
                 </div>
 
+                {/* Hidden honeypot field for spam protection */}
+                <input
+                  type="text"
+                  name="website"
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 <button
                   type="submit"
-                  className="w-full btn-primary flex items-center justify-center"
+                  disabled={submissionState.isSubmitting}
+                  className="w-full btn-primary flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Message
+                  {submissionState.isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Sending Message...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </motion.div>

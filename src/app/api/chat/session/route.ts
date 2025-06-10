@@ -80,7 +80,7 @@ export async function DELETE(request: NextRequest) {
 }
 
 // Get session statistics
-export async function POST(_request: NextRequest) {
+export async function POST() {
   try {
     const now = new Date();
     const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import Image from 'next/image';
@@ -56,11 +56,11 @@ const Testimonials = () => {
     },
   ];
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => 
+  const nextTestimonial = useCallback(() => {
+    setCurrentIndex((prevIndex) =>
       prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  }, [testimonials.length]);
 
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) => 

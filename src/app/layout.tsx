@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
-import ChatBot from "@/components/ChatBot";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import ChatbotWidget from "@/components/ChatbotWidget";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 const inter = Inter({
@@ -43,8 +43,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <WhatsAppWidget />
-        <ChatBot />
+        <WhatsAppButton />
+        <ChatbotWidget />
         <PerformanceMonitor />
       </body>
     </html>
