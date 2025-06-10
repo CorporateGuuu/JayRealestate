@@ -258,7 +258,7 @@ const PropertiesPage = () => {
     <div className="pt-16 lg:pt-20 min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm">
-        <div className="container-custom section-padding-sm">
+        <div className="container-custom section-spacing-sm">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -275,7 +275,7 @@ const PropertiesPage = () => {
         </div>
       </div>
 
-      <div className="container-custom section-padding">
+      <div className="container-custom section-spacing">
         {/* Advanced Search */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -321,13 +321,13 @@ const PropertiesPage = () => {
             <div className="flex border border-gray-300 rounded-lg overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-3 ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'} transition-colors duration-200`}
+                className={`p-3 touch-target ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'} transition-colors duration-200`}
               >
                 <Grid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-3 ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'} transition-colors duration-200`}
+                className={`p-3 touch-target ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'} transition-colors duration-200`}
               >
                 <List className="w-5 h-5" />
               </button>
@@ -343,7 +343,7 @@ const PropertiesPage = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className={`${
               viewMode === 'grid'
-                ? 'property-grid'
+                ? 'grid-responsive'
                 : 'space-y-8'
             }`}
           >

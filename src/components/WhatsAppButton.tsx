@@ -164,7 +164,7 @@ const WhatsAppButton = ({
   // Floating variant (default) - Bottom-right positioning with responsive spacing
   return (
     <motion.div
-      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] ${className}`}
+      className={`widget-bottom-right ${className}`}
       variants={widgetBounce}
       initial="initial"
       animate="animate"
@@ -237,7 +237,7 @@ const WhatsAppButton = ({
           setShowQuickActions(!showQuickActions);
         }}
         disabled={isLoading}
-        className={`${sizeClasses[size]} bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center disabled:opacity-50 relative overflow-hidden`}
+        className={`${sizeClasses[size]} touch-target-lg bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center disabled:opacity-50 relative overflow-hidden`}
         variants={buttonAnimations}
         initial="rest"
         whileHover="hover"

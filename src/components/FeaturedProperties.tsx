@@ -110,7 +110,7 @@ const FeaturedProperties = () => {
   };
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-spacing bg-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -127,7 +127,7 @@ const FeaturedProperties = () => {
           </p>
         </motion.div>
 
-        <div className="property-grid">
+        <div className="grid-responsive">
           {properties.map((property, index) => (
             <motion.div
               key={property.id}
@@ -153,7 +153,7 @@ const FeaturedProperties = () => {
                 <div className="absolute top-4 right-4 flex space-x-2">
                   <button
                     onClick={() => toggleLike(property.id)}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200 ${
+                    className={`w-10 h-10 touch-target rounded-full flex items-center justify-center transition-colors duration-200 ${
                       likedProperties.includes(property.id)
                         ? 'bg-red-500 text-white'
                         : 'bg-white/80 text-gray-700 hover:bg-red-500 hover:text-white'
@@ -163,7 +163,7 @@ const FeaturedProperties = () => {
                   </button>
                   <Link
                     href={`/properties/${property.id}`}
-                    className="w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-gray-700 hover:bg-blue-500 hover:text-white transition-colors duration-200"
+                    className="w-10 h-10 touch-target bg-white/80 rounded-full flex items-center justify-center text-gray-700 hover:bg-blue-500 hover:text-white transition-colors duration-200"
                   >
                     <Eye className="w-5 h-5" />
                   </Link>

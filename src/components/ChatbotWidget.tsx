@@ -162,14 +162,14 @@ Is there anything else I can help you with?`,
   if (!isOpen) {
     return (
       <motion.div
-        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9998] ${className}`}
+        className={`widget-bottom-left ${className}`}
         variants={widgetBounce}
         initial="initial"
         animate="animate"
       >
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center relative overflow-hidden"
+          className="w-12 h-12 sm:w-14 sm:h-14 touch-target-lg bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center relative overflow-hidden"
           variants={buttonAnimations}
           initial="rest"
           whileHover="hover"
@@ -213,7 +213,7 @@ Is there anything else I can help you with?`,
 
   return (
     <motion.div
-      className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9998] ${className}`}
+      className={`widget-bottom-left ${className}`}
       variants={widgetBounce}
       initial="initial"
       animate="animate"
